@@ -1,6 +1,6 @@
-baseurl: '/'
+url: "http://www.anticipationconsulting.com"
 permalink: pretty
-title: 'Jekyll Serif'
+title: 'Anticipation Consulting'
 
 logo:
   mobile: "images/logo/logo-mobile.svg"
