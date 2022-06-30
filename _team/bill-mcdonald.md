@@ -1,12 +1,10 @@
 ---
-title: "Bill McDonald"
-date: 2018-11-19T10:47:58+10:00
-image: "images/team/nonsap-visuals-kMJp7620W6U-unsplash.jpg"
-jobtitle: "Graphic Designer"
-linkedinurl: ""
-weight: 7
+title: "Brian C. Keegan, Ph.D."
+date: 2019-06-01T00:00:00-6:00
+image: "images/team/headshot2-smallest.jpg"
+jobtitle: "Founder and CEO"
+linkedinurl: "https://www.linkedin.com/in/brianckeegan/"
+weight: 1
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Brian is the founder and CEO of Anticipation Consulting. He is a computational social scientist with interdisciplinary training and experience from MIT, Northwestern, Harvard Business School, and the University of Colorado Boulder.
