@@ -10,4 +10,4 @@ show_call_box: true
 
 # Anticipation Consulting.
 
-We find what you didn't know you were looking for.
+Find what you didn't know to look for.
