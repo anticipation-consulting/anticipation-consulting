@@ -1,7 +1,7 @@
 ---
 title: "Data Storytelling"
 date: 2019-05-18T12:33:46+10:00
-weight: 7
+weight: 5
 ---
 
 Lorem markdownum **Achaica revolutaque amore**, penitus puppes nec furit,
