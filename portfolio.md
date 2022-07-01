@@ -1,6 +1,6 @@
 ---
 title: Portfolio
-layout: portfolios
+layout: portfolio
 description: Portfolio
 # permalink: "/portfolio/"
 intro_image_absolute: true

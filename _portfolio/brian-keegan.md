@@ -1,7 +1,7 @@
 ---
 title: "Brian C. Keegan, Ph.D."
 date: 2019-06-01T00:00:00-6:00
-image: "images/team/headshot2-smallest.jpg"
+image: "images/headshot2-smallest.jpg"
 jobtitle: "Founder and CEO"
 linkedinurl: "https://www.linkedin.com/in/brianckeegan/"
 weight: 1
