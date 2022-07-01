@@ -1,6 +1,6 @@
 ---
 title: "Data Strategy"
-date: 2019-01-28T15:15:26+10:00
+date: 2019-07-01T00:00:00-06:00
 weight: 2
 ---
 
