@@ -1,12 +1,30 @@
-<div class='header'>
-  <div class="container">
-    <div class="logo">
-      <a href="{{ site.baseurl }}"><img width="{{ site.logo.desktop_width }}" height="{{ site.logo.desktop_height }}" alt="{{ site.title }}" src="{{ site.logo.desktop | relative_url }}" /></a>
+<header class="site-header" data-screen-label="header">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="Anticipation Consulting — home">
+      <svg width="22" height="27" viewBox="0 0 22 27" aria-hidden="true" style="overflow:visible">
+        <g transform="translate(11,14) rotate(-30)">
+          <text x="0" y="0" text-anchor="middle" dominant-baseline="middle"
+            fill="#2f6fe0"
+            font-family="'GFS Didot','Didot','Bodoni MT',Georgia,serif"
+            font-size="24">A</text>
+        </g>
+      </svg>
+      <span class="mark"><span class="mark-sans">nticipation</span><span class="mark-serif"> Consulting</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/services/"{% if page.nav == 'services' %} class="active"{% endif %}>Services</a></li>
+      <li><a href="/expertise/"{% if page.nav == 'expertise' %} class="active"{% endif %}>Expertise</a></li>
+      <li><a href="/about/"{% if page.nav == 'about' %} class="active"{% endif %}>About</a></li>
+      <li><a href="/insights/"{% if page.nav == 'insights' %} class="active"{% endif %}>Insights</a></li>
+      <li><a href="/contact/"{% if page.nav == 'contact' %} class="active"{% endif %}>Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      {%- if page.nav == 'contact' %}
+      <a class="btn btn-primary" href="mailto:contact@anticipationconsulting.com">Email directly <span class="arrow">&rarr;</span></a>
+      {%- else %}
+      <a class="btn btn-primary" href="/contact/">Start a conversation <span class="arrow">&rarr;</span></a>
+      {%- endif %}
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
-    <div class="logo-mobile">
-      <a href="{{ site.baseurl }}"><img width="{{ site.logo.mobile_width }}" height="{{ site.logo.mobile_height }}" alt="{{ site.title }}" src="{{ site.logo.mobile | relative_url }}" /></a>
-    </div>
-    {% include main-menu.html %}
-    {% include hamburger.html %}
   </div>
-</div>
+</header>

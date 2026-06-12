@@ -1,0 +1,12 @@
+---
+layout: null
+permalink: /robots.txt
+sitemap: false
+---
+# robots.txt — Anticipation Consulting
+# Responsible defaults: the whole public site is crawlable.
+
+User-agent: *
+Allow: /
+
+Sitemap: {{ "/sitemap.xml" | absolute_url }}

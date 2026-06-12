@@ -1,0 +1,55 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["ProfessionalService", "Organization"],
+      "@id": "{{ site.url }}/#organization",
+      "name": "Anticipation Consulting",
+      "alternateName": "Anticipation",
+      "url": "{{ site.url }}/",
+      "image": "{{ site.og_image | absolute_url }}",
+      "logo": "{{ site.og_image | absolute_url }}",
+      "description": "Boutique data science and AI consultancy offering modeling, audits, advisory, and expert testimony.",
+      "slogan": "What you didn't know to ask.",
+      "email": "{{ site.email }}",
+      "areaServed": "Worldwide",
+      "knowsAbout": ["Data science", "Machine learning", "Artificial intelligence strategy", "Algorithm and data auditing", "Expert testimony and litigation support", "Network science", "Computational social science", "Online platforms and social media"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Boulder",
+        "addressRegion": "CO",
+        "addressCountry": "US"
+      },
+      "founder": { "@id": "{{ site.url }}/#brian" },
+      "sameAs": [
+        "https://www.linkedin.com/in/brianckeegan/",
+        "https://github.com/brianckeegan"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ site.url }}/#brian",
+      "name": "Brian C. Keegan",
+      "honorificSuffix": "Ph.D.",
+      "jobTitle": "Founder & Principal",
+      "worksFor": { "@id": "{{ site.url }}/#organization" },
+      "alumniOf": ["Massachusetts Institute of Technology", "Northwestern University", "Northeastern University", "Harvard Business School"],
+      "affiliation": "University of Colorado Boulder",
+      "knowsAbout": ["Computational social science", "Network science", "Data auditing", "Online communities"],
+      "sameAs": [
+        "https://www.linkedin.com/in/brianckeegan/",
+        "https://github.com/brianckeegan"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": "Anticipation Consulting",
+      "publisher": { "@id": "{{ site.url }}/#organization" },
+      "inLanguage": "en-US"
+    }
+  ]
+}
+</script>
