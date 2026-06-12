@@ -37,5 +37,6 @@ jobs:
           test -f _site/expertise/index.html
           test -f _site/insights/index.html
           test -f _site/contact/index.html
+          test -f _site/process/index.html
           test -f _site/sitemap.xml
           test -f _site/robots.txt
