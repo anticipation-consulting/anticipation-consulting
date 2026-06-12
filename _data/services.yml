@@ -1,0 +1,194 @@
+# ---------------------------------------------------------------------------
+# The nine services. Single source of truth for:
+#   - the home page 3x3 grid (index.html)
+#   - the Services overview page (services.html): index tiles + anchored sections
+#   - the ItemList JSON-LD (_includes/schema/services.html)
+# Body fields are HTML-ready (entities pre-escaped); schema_name is plain text.
+# variant: paper | paper-2 (tinted band) | ink (dark band)
+# marker:  arrow | number   (feature-list bullet style)
+# ---------------------------------------------------------------------------
+
+- slug: data-science
+  number: "01"
+  flagship: true
+  variant: paper
+  marker: arrow
+  title: "Data Science &amp; Modeling"
+  schema_name: "Data Science & Modeling"
+  eyebrow: "01 / Flagship"
+  card_summary: "Predictive, causal, network, and language-model analysis built and validated end to end &mdash; the hands-on work itself."
+  lead: "The hands-on work itself &mdash; building, validating, and interpreting the models that answer your hardest empirical questions."
+  detail: "Most firms scope the analysis and subcontract the doing. Here the person who frames the problem is the person who writes the code, checks the assumptions, and signs the conclusion."
+  features:
+    - name: "Predictive modeling"
+      desc: "Forecasting and classification with honest accounting of uncertainty and error."
+    - name: "Causal inference"
+      desc: "Quasi-experiments and observational designs that separate signal from coincidence."
+    - name: "Network analysis"
+      desc: "Structure, influence, and flow in social, market, and infrastructure networks."
+    - name: "Text &amp; language models"
+      desc: "NLP and LLM-based measurement &mdash; with rigorous evaluation, not vibes."
+    - name: "Reproducible pipelines"
+      desc: "Versioned code and documented data lineage you or a third party can re-run."
+
+- slug: strategy
+  number: "02"
+  variant: paper-2
+  marker: arrow
+  title: "Data Strategy &amp; Advice"
+  schema_name: "Data Strategy & Advice"
+  eyebrow: "02"
+  card_summary: "Where data and AI actually create value &mdash; and where they don't. Roadmaps, build-vs-buy, and honest risk assessment for leadership."
+  lead: "Where data and AI create real value for your organization &mdash; and, just as important, where they don't."
+  detail: "An independent read on the technology, free of any incentive to sell you a platform. We help leadership separate durable advantage from hype."
+  features:
+    - name: "Opportunity &amp; risk assessment"
+      desc: "A candid map of where data and ML pay off and where they add liability."
+    - name: "Build-vs-buy &amp; vendor review"
+      desc: "Technical due diligence on tools, models, and the claims around them."
+    - name: "Roadmaps &amp; readiness"
+      desc: "Sequencing investments against the data and talent you actually have."
+    - name: "Board &amp; executive briefings"
+      desc: "Decision-grade explanations of what the technology can and cannot do."
+
+- slug: audit
+  number: "03"
+  variant: paper
+  marker: arrow
+  title: "Data Audit &amp; Forensics"
+  schema_name: "Data Audit & Forensics"
+  eyebrow: "03"
+  card_summary: "Independent review of models, pipelines, and datasets for bias, leakage, and error &mdash; and reconstruction of what the data really shows."
+  lead: "Independent review of the models, pipelines, and datasets your organization &mdash; or your counterparty &mdash; relies on."
+  detail: "Exploratory data auditing finds the errors before they find you: the silent leakage, the biased sample, the metric that flatters the model. When something has gone wrong, forensic analysis reconstructs what the data really shows."
+  features:
+    - name: "Bias &amp; fairness assessment"
+      desc: "Disparate impact and subgroup performance, measured defensibly."
+    - name: "Robustness &amp; leakage"
+      desc: "Where a model breaks, and where its accuracy is an artifact of the data."
+    - name: "Provenance &amp; reconstruction"
+      desc: "Where the data came from, what was changed, and what it can support."
+    - name: "Reproducibility review"
+      desc: "Can the result be re-derived from the code and data as documented?"
+
+- slug: research-design
+  number: "04"
+  variant: paper-2
+  marker: arrow
+  title: "Research Design"
+  schema_name: "Research Design"
+  eyebrow: "04"
+  card_summary: "Framing rigorous studies &mdash; questions, measures, sampling, and methods that can actually answer what you're asking."
+  lead: "Framing a study so it can actually answer the question &mdash; before time and money go into collecting the wrong data."
+  detail: "The most expensive mistakes happen at the whiteboard, not the keyboard. Good design decides what to measure, who to sample, and which method can support the claim you want to make."
+  features:
+    - name: "Questions &amp; hypotheses"
+      desc: "Turning a fuzzy concern into a question data can address."
+    - name: "Measures &amp; instruments"
+      desc: "Surveys and metrics that capture what you actually mean."
+    - name: "Sampling &amp; power"
+      desc: "Who to study, how many, and what you can conclude."
+    - name: "Method selection"
+      desc: "Experimental, quasi-experimental, or observational &mdash; matched to the question."
+
+- slug: testimony
+  number: "05"
+  variant: ink
+  marker: number
+  title: "Expert Testimony"
+  title_full: "Expert Testimony &amp; Litigation Support"
+  schema_name: "Expert Testimony"
+  eyebrow: "05"
+  card_summary: "Expert reports, depositions, and trial testimony on data, algorithms, online platforms, and networks &mdash; for counsel on either side."
+  lead: "Scientifically grounded expert work for matters involving data, algorithms, online platforms, and networks &mdash; for plaintiff or defense."
+  detail: "Reports written to withstand an opposing expert, and testimony delivered to be understood by a jury. Engagements accepted subject to conflict check."
+  features:
+    - name: "Affirmative expert reports"
+      desc: "Original analysis and written opinions grounded in peer-reviewed method."
+    - name: "Rebuttal &amp; critique"
+      desc: "Independent review of an opposing expert's data, code, and inferences."
+    - name: "Depositions &amp; trial testimony"
+      desc: "Composed, credible testimony that survives cross-examination."
+    - name: "Class certification &amp; damages"
+      desc: "Statistical questions of commonality, exposure, and quantification."
+
+- slug: coaching
+  number: "06"
+  variant: paper
+  marker: arrow
+  title: "Coaching &amp; Training"
+  schema_name: "Coaching & Training"
+  eyebrow: "06"
+  card_summary: "Workshops and executive education that lift a team's data fluency &mdash; from analysts to the C-suite."
+  lead: "Raising the data fluency of a team &mdash; from analysts who want to go deeper to executives who need to ask sharper questions."
+  detail: "Built on a decade of teaching computational methods to students and professionals who arrive from every background."
+  features:
+    - name: "Hands-on workshops"
+      desc: "Practical sessions in analysis, modeling, and reproducible workflow."
+    - name: "Executive education"
+      desc: "Data and AI literacy for leaders who decide, not who code."
+    - name: "Embedded mentorship"
+      desc: "Standing alongside your team on a real problem, not a toy one."
+    - name: "Curriculum design"
+      desc: "Programs tailored to your stack, your data, and your goals."
+
+- slug: storytelling
+  number: "07"
+  variant: paper-2
+  marker: arrow
+  title: "Data Storytelling"
+  title_full: "Data Storytelling &amp; Visualization"
+  schema_name: "Data Storytelling"
+  eyebrow: "07"
+  card_summary: "Analysis turned into narrative and visualization that a decision-maker remembers and acts on."
+  lead: "Analysis is only useful if it changes a decision. We turn findings into narrative and visualization people remember and act on."
+  detail: "Charts that are honest about uncertainty, and stories that don't oversell what the numbers can bear."
+  features:
+    - name: "Decision-grade visualization"
+      desc: "Figures designed for the room where the call gets made."
+    - name: "Narrative &amp; framing"
+      desc: "The throughline that makes a complex result land."
+    - name: "Briefings &amp; deliverables"
+      desc: "Board decks, reports, and explainers built to be re-used."
+    - name: "Interactive &amp; reproducible"
+      desc: "Dashboards and notebooks that update as the data does."
+
+- slug: community
+  number: "08"
+  variant: paper
+  marker: arrow
+  title: "Community Research"
+  schema_name: "Community Research"
+  eyebrow: "08"
+  card_summary: "Mixed-methods study of the communities you serve &mdash; online and off &mdash; how they form, govern, and behave."
+  lead: "Mixed-methods study of the communities you serve &mdash; online and off &mdash; how they form, govern, participate, and behave."
+  detail: "Grounded in a career studying online communities and peer production. We combine behavioral trace data with qualitative inquiry to see the whole picture."
+  features:
+    - name: "Behavioral &amp; trace analysis"
+      desc: "What logs and participation reveal about real behavior at scale."
+    - name: "Governance &amp; moderation"
+      desc: "How rules, norms, and tooling shape behavior &mdash; for better or worse."
+    - name: "Community health metrics"
+      desc: "Participation, retention, and well-being &mdash; not vanity counts."
+    - name: "Qualitative &amp; participatory"
+      desc: "Interviews and field study, in service of the people studied."
+
+- slug: osint
+  number: "09"
+  variant: paper-2
+  marker: arrow
+  title: "Open-Source Intelligence"
+  schema_name: "Open-Source Intelligence"
+  eyebrow: "09"
+  card_summary: "Structured collection and analysis of public and open-source data &mdash; answering questions others assume can't be answered."
+  lead: "Structured collection and analysis of public and open-source data &mdash; answering questions others assume can't be answered."
+  detail: "Rigorous, ethical OSINT: documented sourcing, verified provenance, and conclusions stated only as far as the evidence allows. The same standard of proof we bring to an expert report."
+  features:
+    - name: "Public-record &amp; web collection"
+      desc: "Systematic gathering from open sources, with a documented chain of custody."
+    - name: "Entity &amp; network mapping"
+      desc: "Connecting people, organizations, and assets from disparate public data."
+    - name: "Verification &amp; geolocation"
+      desc: "Corroborating and situating claims, images, and events."
+    - name: "Due diligence &amp; investigations"
+      desc: "Background, risk, and integrity research grounded in evidence."

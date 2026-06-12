@@ -1,0 +1,27 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "{{ page.service_name | default: page.title | escape }}",
+  "name": "{{ page.service_name | default: page.title | escape }}",
+  "description": "{{ page.description | strip_newlines | escape }}",
+  "provider": {
+    "@type": "Organization",
+    "name": "Anticipation Consulting",
+    "url": "{{ site.url }}/"
+  },
+  "areaServed": "Worldwide",
+  "url": "{{ page.url | absolute_url }}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": "{{ site.url }}/services/" },
+    { "@type": "ListItem", "position": 3, "name": "{{ page.service_name | default: page.title | escape }}", "item": "{{ page.url | absolute_url }}" }
+  ]
+}
+</script>

@@ -1,40 +1,26 @@
-url: "http://www.anticipationconsulting.com"
+# ---------------------------------------------------------------------------
+# Anticipation Consulting — site configuration
+# A custom Jekyll theme (Spectral / IBM Plex / Cormorant + a generative
+# node-link motif). No external theme dependency.
+# ---------------------------------------------------------------------------
+
+url: "https://www.anticipationconsulting.com"
+title: "Anticipation Consulting"
+tagline: "What you didn't know to ask."
+description: >-
+  Anticipation Consulting is a boutique data science and AI consultancy led by
+  Brian C. Keegan, Ph.D. — rigorous modeling, independent audits, strategic
+  advisory, and expert testimony you can stand behind.
+author: "Brian C. Keegan"
+email: "contact@anticipationconsulting.com"
+locale: "en_US"
+
+# Pretty URLs: /about/, /services/, /services/data-science/, …
 permalink: pretty
-title: 'Anticipation Consulting'
 
-logo:
-  mobile: "images/logo/logo-mobile.svg"
-  mobile_height: "32px"
-  mobile_width: "32px"
-  desktop: "images/logo/logo.svg"
-  desktop_height: "32px"
-  desktop_width: "120px"
-
-home: 
-  limit_services: 6
-
-collections:
-  services:
-    output: true
-    sort_by: weight
-  portfolios:
-    output: true
-    sort_by: weight
-
-defaults:
-  - scope:
-      path: ""
-      type: "services"
-    values:
-      layout: "service"
-  - scope:
-      path: ""
-      type: "portfolios"
-    values:
-      layout: "portfolio"
-
-sass:
-  style: compressed # possible values: nested expanded compact compressed
+# Shared SEO defaults (overridable per page via front matter)
+og_image: "/images/og-image.png"
+og_image_alt: "Anticipation Consulting — rigorous data science for decisions that can't be redone."
 
 plugins:
   - jekyll-environment-variables
@@ -42,11 +28,8 @@ plugins:
 exclude:
   - Gemfile
   - Gemfile.lock
+  - vendor
   - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  - LICENSE.md
-  - LICENSE
   - README.md
+  - LICENSE
+  - netlify.toml

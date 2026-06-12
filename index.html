@@ -1,0 +1,239 @@
+---
+layout: default
+permalink: /
+schema: home
+seo_title: "Anticipation Consulting — Rigorous data science & AI advisory"
+description: >-
+  Boutique data science and AI consultancy led by Brian C. Keegan, Ph.D.
+  Rigorous predictive, causal, and network modeling; independent algorithm and
+  data audits; strategic advisory; and expert testimony — evidence you can
+  stand behind when a decision can't be redone.
+og_title: "Anticipation Consulting — Rigorous data science & AI advisory"
+og_description: "Modeling, audits, advisory, and expert testimony you can stand behind. What you didn't know to ask."
+twitter_description: "Modeling, audits, advisory, and expert testimony you can stand behind."
+keywords: "data science consulting, AI advisory, algorithm audit, data audit and forensics, expert witness data science, computational social science, machine learning consultant, network analysis, litigation support"
+priority: "1.0"
+changefreq: monthly
+---
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero" data-screen-label="hero">
+  <canvas class="hero-motif" data-seed="11" data-density="1.1"></canvas>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow">Computational social science &middot; AI &amp; data science</span>
+      <h1 class="display">Data science for decisions that cannot be redone.</h1>
+      <p class="lead">We build the evidence that leaders rely on when the stakes are real &mdash; and help you find <em>what you didn't know to ask.</em></p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contact/">Start a conversation <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-ghost" href="/services/">Explore services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== POSITIONING + PRINCIPLES ===================== -->
+<section class="section" data-screen-label="positioning">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:start" class="pos-grid">
+      <div class="reveal">
+        <span class="eyebrow">What we do</span>
+        <h2 class="section-title" style="margin-top:1.2rem">A small practice that does the hard, careful work itself.</h2>
+      </div>
+      <div class="reveal">
+        <p class="lead" style="margin-bottom:1.2rem">A boutique data science consultancy run by a computational social scientist with expertise in the behavior of data, algorithms, and people under pressure.</p>
+        <p class="muted">From a single board-level question to a multi-year measurement program or a contested expert report, the standard is the same: methods that are sound, results that reproduce, and explanations that survive a skeptical reader.</p>
+        <a class="link-arrow" href="/about/" style="margin-top:1.4rem">Meet the practice <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+
+    <div class="metrics reveal" style="margin-top:clamp(2.5rem,4vw,4rem)">
+      <div class="metric"><div class="num">Exp<b>ert</b></div><div class="cap">Every engagement run by a doctoral-trained scientist &mdash; never handed down.</div></div>
+      <div class="metric"><div class="num">Rob<b>ust</b></div><div class="cap">Analysis stress-tested and documented to withstand opposing experts and cross-examination.</div></div>
+      <div class="metric"><div class="num">Repro<b>ducible</b></div><div class="cap">Code, data lineage, and methods you (or a third party) can re-run.</div></div>
+      <div class="metric"><div class="num">Indep<b>endent</b></div><div class="cap">No platform to sell, no product to push &mdash; only the analysis.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APPROACH ===================== -->
+<section class="section" data-screen-label="approach">
+  <div class="wrap">
+    <div class="reveal" style="max-width:46rem;margin-bottom:3rem">
+      <span class="eyebrow">How we work</span>
+      <h2 class="section-title" style="margin-top:1.1rem">Anticipate, model, translate, stand behind it.</h2>
+      <p class="serif" style="font-style:italic;color:var(--ink-soft);margin-top:0.7rem;font-size:1.15rem">The question behind the question.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-no">01 — Anticipate</div>
+        <h3>Frame the real question</h3>
+        <p>Before a line of code, we find what you didn't know to look for &mdash; the question behind the question, and the ways an answer could mislead.</p>
+      </div>
+      <div class="step">
+        <div class="step-no">02 — Model</div>
+        <h3>Build it carefully</h3>
+        <p>Predictive, causal, network, and language models &mdash; constructed, stress-tested, and validated against the ways they could be wrong.</p>
+      </div>
+      <div class="step">
+        <div class="step-no">03 — Translate</div>
+        <h3>Make it legible</h3>
+        <p>Findings rendered into narrative, visuals, and plain language a board, a regulator, or a jury can actually follow.</p>
+      </div>
+      <div class="step">
+        <div class="step-no">04 — Defend</div>
+        <h3>Bulletproof documentation</h3>
+        <p>Methods, assumptions, and limits written down so the work holds up &mdash; to an auditor, an opposing expert, or your future self.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES (data-driven from _data/services.yml) ===================== -->
+<section class="section divider" style="background:var(--paper-2)" data-screen-label="services" id="services">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem">
+      <div class="reveal">
+        <span class="eyebrow">Services</span>
+        <h2 class="section-title" style="margin-top:1.1rem;max-width:20ch">Nine ways we put rigor to work.</h2>
+      </div>
+      <a class="link-arrow reveal" href="/services/">All services in detail <span class="arrow">&rarr;</span></a>
+    </div>
+    <div class="grid-services reveal">
+      {%- for s in site.data.services %}
+      <a class="svc" href="/services/#{{ s.slug }}">
+        <span class="svc-no">{{ s.number }}{% if s.flagship %} / Flagship{% endif %}</span>
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.card_summary }}</p>
+        <span class="svc-go">Learn more &rarr;</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERT TESTIMONY (DARK) ===================== -->
+<section class="section ink-section" data-screen-label="testimony">
+  <canvas class="hero-motif" data-seed="29" data-density="0.8" style="opacity:0.35"></canvas>
+  <div class="wrap" style="position:relative;z-index:1">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center" class="pos-grid">
+      <div class="reveal">
+        <span class="eyebrow">Expert testimony &amp; litigation support</span>
+        <h2 class="section-title" style="margin-top:1.2rem">When the analysis has to hold up in court.</h2>
+        <p class="lead" style="margin-top:1.3rem">Independent, scientifically grounded expert work for matters involving data, algorithms, online platforms, and networks &mdash; reports a careful adversary cannot dismantle, explained in terms a jury understands.</p>
+        <a class="btn btn-primary" href="/services/#testimony" style="margin-top:2rem">Litigation services <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="reveal">
+        <ul class="feature-list">
+          <li><span class="fi">01</span><span><b>Expert reports &amp; affirmative analysis</b><span class="d">Original analysis and written opinions grounded in peer-reviewed method.</span></span></li>
+          <li><span class="fi">02</span><span><b>Rebuttal &amp; critique</b><span class="d">Independent review of an opposing expert's data, code, and inferences.</span></span></li>
+          <li><span class="fi">03</span><span><b>Depositions &amp; trial testimony</b><span class="d">Clear, composed testimony that survives cross-examination.</span></span></li>
+          <li><span class="fi">04</span><span><b>Data forensics &amp; provenance</b><span class="d">Where the data came from, what it can support, and where it cannot.</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CREDIBILITY STRIP ===================== -->
+<section class="section-sm divider" style="background:var(--paper-2)">
+  <div class="wrap">
+    <p class="cred-label" style="margin-bottom:1.4rem">Training &amp; experience</p>
+    <div class="cred">
+      <span class="cred-item">MIT</span>
+      <span class="cred-item">Northwestern</span>
+      <span class="cred-item">Northeastern</span>
+      <span class="cred-item">Harvard Business School</span>
+      <span class="cred-item">CU&nbsp;Boulder</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERTISE TEASER ===================== -->
+<section class="section divider" data-screen-label="expertise">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem">
+      <div class="reveal">
+        <span class="eyebrow">Expertise</span>
+        <h2 class="section-title" style="margin-top:1.1rem;max-width:20ch">Where deep domain knowledge matters most.</h2>
+        <p class="serif" style="font-style:italic;color:var(--ink-soft);margin-top:0.7rem;font-size:1.15rem">Answers to the questions you haven't asked yet.</p>
+      </div>
+      <a class="link-arrow reveal" href="/expertise/">All areas of expertise <span class="arrow">&rarr;</span></a>
+    </div>
+    <div class="domain-grid reveal">
+      <div class="domain"><h3><span class="dno">A</span> Online platforms &amp; social media</h3><p>Behavior, moderation, recommendation, and the economics of attention at scale.</p></div>
+      <div class="domain"><h3><span class="dno">B</span> Trust, safety &amp; misinformation</h3><p>How harmful content spreads, and how to measure interventions honestly.</p></div>
+      <div class="domain"><h3><span class="dno">C</span> Networks &amp; infrastructure</h3><p>Network science for communities, markets, supply chains, and systems.</p></div>
+      <div class="domain"><h3><span class="dno">D</span> Civic &amp; public-sector data</h3><p>Elections, government records, and the public interest in open data.</p></div>
+      <div class="domain"><h3><span class="dno">E</span> Crisis &amp; high-tempo events</h3><p>How organizations and crowds respond when information moves fast.</p></div>
+      <div class="domain"><h3><span class="dno">F</span> Regulation &amp; algorithmic accountability</h3><p>Auditing automated systems against legal and ethical obligations.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOUNDER TEASER ===================== -->
+<section class="section" style="background:var(--paper-2)" data-screen-label="founder">
+  <div class="wrap">
+    <div class="bio-grid">
+      <div class="headshot-frame reveal">
+        <img src="/images/headshot2-smallest.jpg" alt="Brian C. Keegan, Ph.D., founder of Anticipation Consulting">
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">The practice</span>
+        <h2 class="section-title" style="margin-top:1.1rem">Led by Brian&nbsp;C.&nbsp;Keegan,&nbsp;Ph.D.</h2>
+        <p class="lead" style="margin-top:1.2rem">A computational social scientist who has spent fifteen years studying how people, data, and algorithms shape one another &mdash; in research, in the classroom, and in the field.</p>
+        <ul class="cred-list" style="margin-top:1.6rem">
+          <li>Doctoral and postdoctoral training at MIT, Northwestern, and Harvard Business School.</li>
+          <li>Faculty in Information Science at the University of Colorado Boulder.</li>
+          <li>Published research on networks, online communities, Wikipedia, and crisis informatics.</li>
+          <li>Builds in the open &mdash; reproducible code, public data, peer-reviewed methods.</li>
+        </ul>
+        <a class="btn btn-ghost" href="/about/" style="margin-top:1.8rem">Full background &amp; credentials</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INSIGHTS TEASER ===================== -->
+<section class="section divider" data-screen-label="insights">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem">
+      <div class="reveal">
+        <span class="eyebrow">Insights</span>
+        <h2 class="section-title" style="margin-top:1.1rem">Notes from the practice.</h2>
+        <p class="serif" style="font-style:italic;color:var(--ink-soft);margin-top:0.7rem;font-size:1.15rem">See it coming.</p>
+      </div>
+      <a class="link-arrow reveal" href="/insights/">All writing <span class="arrow">&rarr;</span></a>
+    </div>
+    <div class="grid-insights reveal">
+      <a class="insight" href="/insights/">
+        <span class="tag">Method</span>
+        <h3>Exploratory data auditing: finding the errors before they find you</h3>
+        <span class="meta">Essay &middot; 9 min read</span>
+      </a>
+      <a class="insight" href="/insights/">
+        <span class="tag">AI strategy</span>
+        <h3>The questions to ask before you let a model make a decision</h3>
+        <span class="meta">Essay &middot; 6 min read</span>
+      </a>
+      <a class="insight" href="/insights/">
+        <span class="tag">Networks</span>
+        <h3>Reading a network: what edges reveal that averages conceal</h3>
+        <span class="meta">Essay &middot; 7 min read</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT CTA ===================== -->
+<section class="section ink-section" data-screen-label="cta">
+  <div class="wrap center" style="max-width:48rem;margin-inline:auto">
+    <span class="eyebrow no-rule" style="justify-content:center">Start a conversation</span>
+    <p class="pull" style="margin-top:1.4rem">Tell us the decision you're facing. We'll tell you whether better data and analysis could change it &mdash; and <span class="accent">what it would take to find out.</span></p>
+    <div style="margin-top:2.4rem;display:flex;gap:0.9rem;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-primary" href="/contact/">Get in touch <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-ghost" href="mailto:contact@anticipationconsulting.com">contact@anticipationconsulting.com</a>
+    </div>
+  </div>
+</section>
+</main>

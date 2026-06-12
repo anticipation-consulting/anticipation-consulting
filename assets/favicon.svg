@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#1a1d22"></rect>
+  <g transform="translate(16,17) rotate(-30)">
+    <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="&#39;GFS Didot&#39;,&#39;Didot&#39;,&#39;Bodoni MT&#39;,Georgia,serif" font-size="26">A</text>
+  </g>
+</svg>

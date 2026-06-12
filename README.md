@@ -1,102 +1,81 @@
-# Jekyll Serif Theme
+# Anticipation Consulting
 
-Serif is a modern business theme for Jekyll. It contains multiple content types for a typical brochure/marketing website. The theme is fully responsive, blazing fast and artfully illustrated.
+The website for **Anticipation Consulting** — a boutique data science and AI
+consultancy led by Brian C. Keegan, Ph.D. Built with [Jekyll](https://jekyllrb.com/)
+using a bespoke, self-contained theme (no external theme dependency).
 
-[Live Demo](https://jekyll-serif.netlify.app/) |
-[Zerostatic Themes](https://www.zerostatic.io)
+🔗 **Live site:** https://www.anticipationconsulting.com
 
-<a href="https://www.buymeacoffee.com/zerostatic" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+## Design system
 
-![Jekyll Serif Theme screenshot](https://www.zerostatic.io/theme/jekyll-serif/jekyll-serif-screenshot.png)
+- **Type** — Spectral (serif display) · IBM Plex Sans (body) · IBM Plex Mono
+  (labels/eyebrows) · Cormorant Garamond + GFS Didot (wordmark). Loaded from
+  Google Fonts.
+- **Palettes** — three palettes are defined as `html[data-palette="signal|ink|field"]`
+  blocks of CSS custom properties in `assets/site.css`. **Signal** (charcoal +
+  electric blue) is the default.
+- **Logo** — a tilted Didot “A” (electric blue, −30°) set against
+  `nticipation Consulting`, so the mark itself is the leading “A”.
+- **Interactive background** — `assets/site.js` injects one fixed, full-viewport
+  `<canvas id="net-bg">`: a drifting node-link field (triangular nodes in the
+  brand triad) that links toward the cursor. It is palette-aware, pauses when
+  the tab is hidden, and renders **statically** under `prefers-reduced-motion`.
+  Dark `.ink-section` bands carry their own static `hero-motif` canvas.
 
-### Theme features
-
-- Jekyll 4.2+
-- Netlify & Github Pages ready
-- Services (Collection)
-- Team (Collection)
-- Features (Data)
-- SCSS
-- 100% Responsive design, animated hamburger and mobile slide in menu
-- Bootstrap 4.6 - _Only the bootstrap grid and utilites are imported by default. If you want to use more of the Boostrap library you can uncomment the `@import` in `style.scss`_
-- 100/100 Google Lighthouse speed score
-- 100/100 Google Lighthouse seo score
-- 100/100 Google Lighthouse accessibility score
-- 100/100 Google Lighthouse best practices score
-- Under 50KB without images or 80KB with images and illustrations ⚡
-- Under 20KB without Google fonts ⚡⚡⚡
-- Robust example content included
-- Royalty free illustrations included
-
-## Installation
-
-### Installing Ruby & Jekyll
-
-If this is your first time using Jekyll, please follow the [Jekyll docs](https://jekyllrb.com/docs/installation/) and make sure your local environment (including Ruby) is setup correctly.
-
-### Installing Theme
-
-Download or clone the theme.
-
-To run the theme locally, navigate to the theme directory and run:
+## Structure
 
 ```
-bundle install
+.
+├── _config.yml              # Site config (URL, title, SEO defaults)
+├── _data/
+│   └── services.yml         # The nine services (single source of truth)
+├── _includes/
+│   ├── head.html            # Per-page SEO: meta, Open Graph, Twitter, fonts, CSS
+│   ├── header.html          # Sticky nav + wordmark
+│   ├── footer.html          # Site footer
+│   └── schema/              # JSON-LD partials (home, services, service, about, contact)
+├── _layouts/
+│   └── default.html         # The single shared page shell
+├── assets/
+│   ├── site.css             # Design system + components (tokens, layout, all components)
+│   ├── site.js              # Network background, mobile nav, palette persistence, reveals
+│   └── favicon.svg          # Tilted Didot “A” favicon
+├── images/                  # og-image.png, headshot
+├── index.html               # Home
+├── services.html            # Services overview (tiles + 9 anchored sections, data-driven)
+├── services/data-science.html  # Flagship service detail
+├── about.html · expertise.html · insights.html · contact.html
+├── sitemap.xml · robots.txt # Generated from page front matter
+└── .github/workflows/ci.yml # Builds the site on every push / PR
 ```
 
-To start the Jekyll local development server.
+The nine services are defined once in `_data/services.yml` and drive the home
+page grid, the Services overview page, and the `ItemList` structured data.
 
-```
-bundle exec jekyll serve
-```
+## SEO
 
-To build the theme.
+Per-page `<title>`, meta description, canonical, robots, Open Graph + Twitter
+cards, and JSON-LD are emitted from `_includes/head.html` driven by each page's
+front matter (`seo_title`, `description`, `og_*`, `schema`, …). `sitemap.xml`
+and `robots.txt` are generated from front matter. Content is kept honest — no
+fabricated clients, logos, metrics, or case outcomes.
 
-```
-bundle exec jekyll build
+## Local development
+
+Requires Ruby and [Bundler](https://bundler.io/).
+
+```bash
+bundle install            # install dependencies
+bundle exec jekyll serve  # serve locally at http://localhost:4000
+bundle exec jekyll build  # build the production site into _site/
 ```
 
 ## Deployment
 
-### Netlify
+The production site is built with `jekyll build` (`JEKYLL_ENV=production`) and
+served from the `_site/` directory (see `netlify.toml`). `.github/workflows/ci.yml`
+builds the site on every push and pull request to catch regressions.
 
-Use Netlify to deploy this theme. This theme contains a valid and tested `netlify.toml` - Feel free to use the 1-click deploy below.
+## License
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/zerostaticthemes/jekyll-serif-theme)
-
-### Github Pages
-
-This theme has been tested to work with Github Pages (and Github Project Pages). When using Github Pages you will need to update the `baseurl` in the `_config.yml` otherwise all the css, images and paths will be broken.
-
-For example the site https://zerostaticthemes.github.io/jekyll-serif-theme would have `baseurl: "/jekyll-serif-theme/"`
-
-## Extras
-
-### License
-
-- You cannot create ports of this theme
-- You cannot re-sell this theme
-
-### Credits
-
-- Beautiful royalty free Illustrations by Icons8 - https://icons8.com/illustrations/style--pixeltrue
-- Stock images by Unsplash - https://unsplash.com/
-- Feature icons by Noun Project - https://thenounproject.com/
-
-## Support My Work
-
-I've been building open source themes for all the main static site generators for over 4 years now. My premium themes allow me to continue to allocate time to maintain, improve and build new open source themes.
-
-1. Leave a star ⭐🙏🏻
-2. Mention this theme on twitter [@zerostaticio](https://twitter.com/zerostaticio) 📢
-3. Purchase a premium theme 🔥
-
-### All Jekyll Themes by Zerostatic
-
-- [Jekyll Serif (Open Source)](https://www.zerostatic.io/theme/jekyll-serif/)
-- [Jekyll Atlantic (Open Source)](https://www.zerostatic.io/theme/jekyll-atlantic/)
-- [Jekyll Advance (Premium)](https://www.zerostatic.io/theme/jekyll-advance/)
-- [Jekyll Origin (Premium)](https://www.zerostatic.io/theme/jekyll-origin/)
-- [Jekyll Curate (Premium)](https://www.zerostatic.io/theme/jekyll-curate/)
-
-🇦🇺 **Made in Australia** by Robert Austin
+[MIT](LICENSE) © Brian C. Keegan — Anticipation Consulting.

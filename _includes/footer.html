@@ -1,19 +1,42 @@
-<div class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="footer-inner">
-          <h2 class="footer-title">{{site.title}}</h2>
-          <ul>
-            {% assign footermenu = site.data.menus.footer | sort: 'weight'  %}
-            {% for item in footermenu %}
-            <li class="{% if item.url == page.url %}active{% endif %}">
-              <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="mark">Anticipation <b>Consulting</b></div>
+        <p>A boutique data science and AI consultancy. Modeling, audits, advisory, and expert testimony you can stand behind.</p>
+        <p class="mono" style="margin-top:1.2rem;font-size:0.8rem;letter-spacing:0.06em;color:var(--on-ink-soft)">Boulder, Colorado</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/services/#data-science">Data Science</a></li>
+          <li><a href="/services/#audit">Data Audit &amp; Forensics</a></li>
+          <li><a href="/services/#testimony">Expert Testimony</a></li>
+          <li><a href="/services/#community">Community Research</a></li>
+          <li><a href="/services/">All services</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Practice</h4>
+        <ul>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/expertise/">Expertise</a></li>
+          <li><a href="/insights/">Insights</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:contact@anticipationconsulting.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/brianckeegan/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/brianckeegan" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
       </div>
     </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: "%Y" }} Anticipation Consulting. What you didn't know to ask.</span>
+      <span class="mono">anticipationconsulting.com</span>
+    </div>
   </div>
-</div>
+</footer>
