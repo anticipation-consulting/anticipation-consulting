@@ -160,9 +160,9 @@
   title: "Community Research"
   schema_name: "Community Research"
   eyebrow: "08"
-  card_summary: "Mixed-methods study of the communities you serve &mdash; online and off &mdash; how they form, govern, and behave."
-  lead: "Mixed-methods study of the communities you serve &mdash; online and off &mdash; how they form, govern, participate, and behave."
-  detail: "Grounded in a career studying online communities and peer production. We combine behavioral trace data with qualitative inquiry to see the whole picture."
+  card_summary: "Mixed-methods study of the communities you serve &mdash; online and off &mdash; including applied demographics and forecasts of how they will change."
+  lead: "Mixed-methods study of the communities you serve &mdash; online and off &mdash; how they form, govern, participate, and where they are headed."
+  detail: "Grounded in a career studying online communities and peer production, combining behavioral trace data, qualitative inquiry, and applied demographic and forecasting methods to see the whole picture &mdash; and where it is heading."
   features:
     - name: "Behavioral &amp; trace analysis"
       desc: "What logs and participation reveal about real behavior at scale."
@@ -170,6 +170,10 @@
       desc: "How rules, norms, and tooling shape behavior &mdash; for better or worse."
     - name: "Community health metrics"
       desc: "Participation, retention, and well-being &mdash; not vanity counts."
+    - name: "Applied demographics"
+      desc: "Population structure, segmentation, and change in the communities and markets you serve."
+    - name: "Forecasting &amp; projection"
+      desc: "Projecting participation, demand, and population change &mdash; with honest uncertainty."
     - name: "Qualitative &amp; participatory"
       desc: "Interviews and field study, in service of the people studied."
 
