@@ -49,7 +49,7 @@
     - name: "Roadmaps &amp; readiness"
       desc: "Sequencing investments against the data and talent you actually have."
     - name: "Board &amp; executive briefings"
-      desc: "Decision-grade explanations of what the technology can and cannot do."
+      desc: "Plain explanations of what the technology can and cannot do."
 
 - slug: audit
   number: "03"
@@ -104,11 +104,11 @@
   detail: "Reports written to withstand an opposing expert, and testimony delivered to be understood by a jury. Engagements accepted subject to conflict check."
   features:
     - name: "Affirmative expert reports"
-      desc: "Original analysis and written opinions grounded in peer-reviewed method."
+      desc: "Original analysis and written opinions based on peer-reviewed method."
     - name: "Rebuttal &amp; critique"
       desc: "Independent review of an opposing expert's data, code, and inferences."
     - name: "Depositions &amp; trial testimony"
-      desc: "Composed, credible testimony that survives cross-examination."
+      desc: "Clear, credible testimony that holds up under cross-examination."
     - name: "Class certification &amp; damages"
       desc: "Statistical questions of commonality, exposure, and quantification."
 
@@ -144,7 +144,7 @@
   lead: "Analysis is only useful if it changes a decision. We turn findings into narrative and visualization people remember and act on."
   detail: "Charts that are honest about uncertainty, and stories that don't oversell what the numbers can bear."
   features:
-    - name: "Decision-grade visualization"
+    - name: "Visualization for the decision"
       desc: "Figures designed for the room where the call gets made."
     - name: "Narrative &amp; framing"
       desc: "The throughline that makes a complex result land."
@@ -162,7 +162,7 @@
   eyebrow: "08"
   card_summary: "Mixed-methods study of the communities you serve &mdash; online and off &mdash; including applied demographics and forecasts of how they will change."
   lead: "Mixed-methods study of the communities you serve &mdash; online and off &mdash; how they form, govern, participate, and where they are headed."
-  detail: "Grounded in a career studying online communities and peer production, combining behavioral trace data, qualitative inquiry, and applied demographic and forecasting methods to see the whole picture &mdash; and where it is heading."
+  detail: "Drawn from a career studying online communities and peer production, combining behavioral trace data, qualitative inquiry, and applied demographic and forecasting methods to see the whole picture &mdash; and where it is heading."
   features:
     - name: "Behavioral &amp; trace analysis"
       desc: "What logs and participation reveal about real behavior at scale."
@@ -175,7 +175,7 @@
     - name: "Forecasting &amp; projection"
       desc: "Projecting participation, demand, and population change &mdash; with honest uncertainty."
     - name: "Qualitative &amp; participatory"
-      desc: "Interviews and field study, in service of the people studied."
+      desc: "Interviews and field study, for the people studied."
 
 - slug: osint
   number: "09"
@@ -186,7 +186,7 @@
   eyebrow: "09"
   card_summary: "Structured collection and analysis of public and open-source data &mdash; answering questions others assume can't be answered."
   lead: "Structured collection and analysis of public and open-source data &mdash; answering questions others assume can't be answered."
-  detail: "Rigorous, ethical OSINT: documented sourcing, verified provenance, and conclusions stated only as far as the evidence allows. The same standard of proof we bring to an expert report."
+  detail: "Ethical OSINT: documented sourcing, verified provenance, and conclusions the evidence actually supports. The same standard we bring to an expert report."
   features:
     - name: "Public-record &amp; web collection"
       desc: "Systematic gathering from open sources, with a documented chain of custody."
