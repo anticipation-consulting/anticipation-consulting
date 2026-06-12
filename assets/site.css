@@ -315,6 +315,9 @@ em, .italic { font-style: italic; }
 
 /* ---------------- expertise / domain list ---------------- */
 .domain-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+/* fixed 2-column layout (e.g. Expertise: 2 columns x 3 rows) */
+.domain-grid--2col { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 600px) { .domain-grid--2col { grid-template-columns: 1fr; } }
 .domain { background: var(--paper); padding: 1.7rem 1.6rem; }
 .domain h3 { font-size: 1.12rem; display: flex; align-items: baseline; gap: 0.6rem; }
 .domain h3 .dno { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; color: var(--accent-ink); }
