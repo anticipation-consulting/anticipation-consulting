@@ -7,10 +7,12 @@
 url: "https://www.anticipationconsulting.com"
 title: "Anticipation Consulting"
 tagline: "What you didn't know to ask."
+mission: "We find questions you didn't know to ask and deliver evidence designed to be challenged."
 description: >-
-  Anticipation Consulting is a boutique data science and AI consultancy led by
-  Brian C. Keegan, Ph.D. — rigorous modeling, independent audits, strategic
-  advisory, and expert testimony you can stand behind.
+  We find questions you didn't know to ask and deliver evidence designed to be
+  challenged. Anticipation Consulting is a boutique data science and AI
+  consultancy led by Brian C. Keegan, Ph.D. — rigorous modeling, independent
+  audits, strategic advisory, and expert testimony.
 author: "Brian C. Keegan"
 email: "contact@anticipationconsulting.com"
 locale: "en_US"
@@ -31,6 +33,8 @@ exclude:
   - vendor
   - node_modules
   - README.md
+  - AGENTS.md
+  - CLAUDE.md
   - LICENSE
   - netlify.toml
   - brand

@@ -4,7 +4,12 @@ The website for **Anticipation Consulting** — a boutique data science and AI
 consultancy led by Brian C. Keegan, Ph.D. Built with [Jekyll](https://jekyllrb.com/)
 using a bespoke, self-contained theme (no external theme dependency).
 
+> *We find questions you didn't know to ask and deliver evidence designed to be challenged.*
+
 🔗 **Live site:** https://www.anticipationconsulting.com
+
+> **Contributing, or using an AI agent?** Start with **[AGENTS.md](AGENTS.md)** —
+> the canonical context for architecture, design system, mission, and brand.
 
 ## Design system
 
@@ -46,7 +51,9 @@ using a bespoke, self-contained theme (no external theme dependency).
 ├── services/data-science.html  # Flagship service detail
 ├── about.html · expertise.html · insights.html · contact.html
 ├── sitemap.xml · robots.txt # Generated from page front matter
-└── .github/workflows/ci.yml # Builds the site on every push / PR
+├── .github/workflows/ci.yml # Builds the site on every push / PR
+├── brand/                   # Reproducible brand kit (see brand/README.md)
+└── AGENTS.md · CLAUDE.md    # Agent/contributor context (excluded from the build)
 ```
 
 The nine services are defined once in `_data/services.yml` and drive the home
