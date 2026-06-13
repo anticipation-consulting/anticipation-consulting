@@ -16,8 +16,8 @@ the kit is reproducible and stays consistent with the website.
 | `dist/avatar-paper-1000.png` | Brand-blue **A** on warm white | Light-background avatar |
 | `dist/wordmark-light.png` | Full lockup, dark text (transparent) | Letterhead on light grounds |
 | `dist/wordmark-dark.png` | Full lockup, light text (transparent) | Letterhead on dark grounds |
-| `dist/banner-1500x500.png` | Header banner + tagline | **Bluesky / X header** |
-| `dist/banner-linkedin-1584x396.png` | Header banner, LinkedIn ratio | **LinkedIn cover** |
+| `dist/banner-1500x500.png` | Wordmark + tagline on the network field | **Bluesky / X header** |
+| `dist/banner-linkedin-1584x396.png` | Wordmark banner, LinkedIn ratio | **LinkedIn cover** |
 | `dist/mark-A.svg` | The **A** mark as vector outlines (transparent) | Print, scaling, design tools |
 | `dist/mark-A-on-ink.svg` · `mark-A-on-blue.svg` | Vector mark on a ground | Favicons, app icons |
 
@@ -26,11 +26,29 @@ wordmark sets **NTICIPATION** in Cormorant Garamond SemiBold (tracked, uppercase
 and **Consulting** in Cormorant Garamond Light. The vector `mark-A*.svg` files
 have the glyph converted to paths, so they render anywhere without the font.
 
+## Network background
+
+Banner-sized stills of the live interactive background (`#net-bg` in
+`assets/site.js`) — triangle nodes in the logo triad joined by gradient links
+that fade with distance. The generator ports the canvas algorithm exactly
+(node density, link radius, opacities, triangle geometry), seeded so the layout
+is reproducible. Each size ships on two grounds: warm **paper** (what visitors
+see on the site) and **ink** (for dark social headers and slides).
+
+| File | Size | Use for |
+| --- | --- | --- |
+| `dist/network-bg-1500x500.png` · `…-ink.png` | 1500×500 | Bluesky / X header (no wordmark) |
+| `dist/network-bg-linkedin-1584x396.png` · `…-ink.png` | 1584×396 | LinkedIn cover |
+| `dist/network-bg-1280x640.png` · `…-ink.png` | 1280×640 | GitHub social preview, OG image, slide cover |
+| `dist/network-bg-1920x1080.png` · `…-ink.png` | 1920×1080 | Slide / video / virtual-call background |
+
 ## Palette
 
 | Token | Hex | Use |
 | --- | --- | --- |
-| Brand blue | `#2f6fe0` | The mark; accents |
+| Brand blue | `#2f6fe0` | The mark; accents; network node |
+| Copper | `#b5783f` | Network node (logo triad) |
+| Green | `#2f7d54` | Network node (logo triad) |
 | Ink | `#1a1d22` | Dark grounds, primary text |
 | Paper | `#f7f6f2` | Light grounds |
 | Ink-soft | `#636b77` | "Consulting", secondary text on light |
