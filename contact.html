@@ -36,11 +36,42 @@ changefreq: yearly
         <p class="muted" style="margin-top:1.1rem">Reach out on whichever channel you trust. For sensitive, privileged, or pre-litigation matters, use encrypted email or Signal &mdash; nothing routes through a third-party form handler.</p>
 
         <div style="margin-top:2rem;display:grid;gap:1rem">
-          <a class="card" href="mailto:contact@anticipationconsulting.com" style="display:block;text-decoration:none;color:inherit">
+          <div class="card pgp-card">
             <p class="mono" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-ink)">Encrypted email &middot; Proton</p>
-            <p class="serif" style="font-size:1.2rem;margin-top:0.45rem">contact@anticipationconsulting.com</p>
-            <p class="muted" style="font-size:0.9rem;margin-top:0.4rem">Hosted on Proton Mail with end-to-end encryption between Proton and PGP users. PGP key available on request for privileged material.</p>
-          </a>
+            <p class="serif" style="font-size:1.2rem;margin-top:0.45rem"><a href="mailto:contact@anticipationconsulting.com" style="color:inherit;text-decoration:none">contact@anticipationconsulting.com</a></p>
+            <p class="muted" style="font-size:0.9rem;margin-top:0.4rem">Hosted on Proton Mail with end-to-end encryption between Proton and PGP users. Encrypt sensitive or privileged material to our public key.</p>
+            <button type="button" class="pgp-btn" popovertarget="pgp-key"><span aria-hidden="true">&#128273;</span> PGP public key</button>
+            <div id="pgp-key" popover="auto" class="pgp-pop" role="dialog" aria-label="PGP public key for contact@anticipationconsulting.com">
+              <div class="pgp-pop-head">
+                <span class="mono">PGP public key</span>
+                <button type="button" class="pgp-x" popovertarget="pgp-key" popovertargetaction="hide" aria-label="Close">&times;</button>
+              </div>
+              <p class="pgp-fpr"><span class="mono">Fingerprint &mdash; contact@anticipationconsulting.com</span><br>DD86&nbsp;B677&nbsp;8532&nbsp;C67E&nbsp;4D92&nbsp;&nbsp;FEA7&nbsp;83B7&nbsp;98C4&nbsp;0C12&nbsp;BDA6</p>
+              <pre class="pgp-key" id="pgp-key-text">-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xjMEaiyhjxYJKwYBBAHaRw8BAQdAYx4m96WfT0SAJSzPtWroIQwGyvc5bHAx
+45PYDMBMD8/NR2NvbnRhY3RAYW50aWNpcGF0aW9uY29uc3VsdGluZy5jb20g
+PGNvbnRhY3RAYW50aWNpcGF0aW9uY29uc3VsdGluZy5jb20+wsARBBMWCgCD
+BYJqLKGPAwsJBwkQg7eYxAwSvaZFFAAAAAAAHAAgc2FsdEBub3RhdGlvbnMu
+b3BlbnBncGpzLm9yZ+e8YWl2AzZVNBlnpXjBfBaUBPKp4vXwBoksCg8200MV
+AxUKCAQWAAIBAhkBApsDAh4BFiEE3Ya2d4Uyxn5Nkv6ng7eYxAwSvaYAAFVM
+AQCsI4/ff7xwSJM6/xMcfOEUMNztenIMAYea5QId3Mr9rwD/fS3Gq0z3Cnx2
+CjiT4rnE0jCyTiRFeQ+VtU1E9obVcgvOOARqLKGPEgorBgEEAZdVAQUBAQdA
+Up15PQ2CrInYYwfJHFE5eCiBSb2E3ECH4E2+6D4lKTADAQgHwr4EGBYKAHAF
+gmosoY8JEIO3mMQMEr2mRRQAAAAAABwAIHNhbHRAbm90YXRpb25zLm9wZW5w
+Z3Bqcy5vcmfYlqPWJtj6UFrIcoJT4vLoWFw8dDPa329hVvYaIm/4QAKbDBYh
+BN2GtneFMsZ+TZL+p4O3mMQMEr2mAADChQD7BwxgWkpCY4u5Y8nawSlEFxN2
+Kg9JFHXcnbaNAnH+DFwA/ig6zCyLIdd1Zv9k2F478lqGqe//qHSV3qvPsal1
+tEYN
+=m+rV
+-----END PGP PUBLIC KEY BLOCK-----</pre>
+              <div class="pgp-pop-actions">
+                <button type="button" class="btn btn-ghost pgp-copy" data-copy-target="pgp-key-text">Copy key</button>
+                <a class="btn btn-ghost" href="/assets/anticipation-consulting-pgp.asc" download="anticipation-consulting-pgp.asc">Download .asc</a>
+                <span class="pgp-copied" aria-live="polite"></span>
+              </div>
+            </div>
+          </div>
 
           <a class="card" href="https://signal.me/#eu/-cBvBQNu6FlyOZ71B26AteMlt4wMi8oMB2SThwHj1CxrM0gcD2xLhrOSLRHziiOC" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">
             <p class="mono" style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-ink)">Signal</p>
@@ -98,4 +129,29 @@ changefreq: yearly
     <a class="btn btn-primary" href="mailto:contact@anticipationconsulting.com" style="margin-top:2rem">contact@anticipationconsulting.com</a>
   </div>
 </section>
+
+<script>
+(function () {
+  var btn = document.querySelector('.pgp-copy');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var pre = document.getElementById(btn.getAttribute('data-copy-target'));
+    var note = document.querySelector('.pgp-copied');
+    if (!pre) return;
+    var text = pre.textContent;
+    function ok() { if (note) { note.textContent = 'Copied ✓'; setTimeout(function () { note.textContent = ''; }, 2200); } }
+    function legacy(s) {
+      var t = document.createElement('textarea');
+      t.value = s; t.setAttribute('readonly', '');
+      t.style.position = 'absolute'; t.style.left = '-9999px';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(t);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(ok, function () { legacy(text); ok(); });
+    } else { legacy(text); ok(); }
+  });
+})();
+</script>
 </main>

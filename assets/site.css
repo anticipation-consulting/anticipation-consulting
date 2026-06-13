@@ -285,6 +285,40 @@ em, .italic { font-style: italic; }
 /* generic card */
 .card { background: var(--surface); border: 1px solid var(--line); padding: 1.8rem; border-radius: 3px; }
 
+/* PGP public-key pop-out (contact page) */
+.pgp-btn {
+  margin-top: 1.1rem; display: inline-flex; align-items: center; gap: 0.5em;
+  font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent-ink); background: var(--paper);
+  border: 1px solid var(--line); border-radius: 4px; padding: 0.5rem 0.85rem;
+  cursor: pointer; transition: border-color 0.15s, color 0.15s;
+}
+.pgp-btn:hover { border-color: var(--accent); }
+.pgp-pop {
+  width: min(92vw, 660px); max-height: 82vh; padding: 1.4rem 1.5rem;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+  border-radius: 6px; box-shadow: 0 24px 64px rgba(8, 10, 14, 0.30);
+}
+.pgp-pop::backdrop { background: rgba(10, 12, 16, 0.5); }
+.pgp-pop-head { display: flex; align-items: center; justify-content: space-between; }
+.pgp-pop-head .mono {
+  font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+}
+.pgp-x { background: none; border: 0; color: var(--ink-soft); font-size: 1.3rem; line-height: 1; cursor: pointer; padding: 0 4px; }
+.pgp-x:hover { color: var(--ink); }
+.pgp-fpr { margin-top: 0.9rem; font-family: "IBM Plex Mono", monospace; font-size: 0.76rem; color: var(--ink-700); line-height: 1.7; }
+.pgp-fpr .mono { color: var(--ink-soft); letter-spacing: 0.1em; font-size: 0.64rem; text-transform: uppercase; }
+.pgp-key {
+  margin-top: 0.7rem; font-family: "IBM Plex Mono", monospace; font-size: 0.7rem;
+  line-height: 1.5; color: var(--ink-700); background: var(--paper-2);
+  border: 1px solid var(--line); border-radius: 4px; padding: 0.9rem 1rem;
+  overflow: auto; max-height: 46vh; white-space: pre; user-select: all;
+}
+.pgp-pop-actions { display: flex; gap: 0.7rem; align-items: center; margin-top: 1rem; flex-wrap: wrap; }
+.pgp-pop-actions .btn { font-size: 0.8rem; padding: 0.5rem 0.95rem; }
+.pgp-copied { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; color: var(--accent-ink); }
+
 /* ---------------- approach / steps ---------------- */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.2rem; }
 .step { border-top: 2px solid var(--ink); padding-top: 1.2rem; }
