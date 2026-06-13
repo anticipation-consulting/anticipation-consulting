@@ -6,6 +6,23 @@ the kit is reproducible and stays consistent with the website.
 
 ![preview](dist/_preview.png)
 
+## Mission, voice & values
+
+**Mission** — *We find questions you didn't know to ask and deliver evidence
+designed to be challenged.*
+
+**Tagline** (the short lockup used on banners) — *What you didn't know to ask.*
+It's the first clause of the mission; the full mission is reserved for prose, as
+it's too long for a tracked lockup.
+
+**Voice** — direct, understated, precise, intellectually honest. Plain strong
+nouns and verbs, em-dashes for rhythm; no hype ("leverage", "cutting-edge",
+"empower"). **Values:** honesty over confidence, reproducible by default,
+documented for scrutiny, independent judgment. **Content rule:** no fabricated
+clients, logos, metrics, or outcomes — ever.
+
+See [`AGENTS.md`](../AGENTS.md) for the full project, design, and brand context.
+
 ## The marks
 
 | File | What it is | Use for |
