@@ -33,3 +33,4 @@ exclude:
   - README.md
   - LICENSE
   - netlify.toml
+  - brand

@@ -1,0 +1,6 @@
+# Fonts are fetched on demand (OFL) — not vendored. See fetch_fonts.sh.
+fonts/
+__pycache__/
+# scratch validation renders
+dist/*_check.png
+dist/_svgcheck.png
