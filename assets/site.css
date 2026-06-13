@@ -10,6 +10,8 @@ html[data-palette="ink"] {
   --paper:      oklch(0.985 0.004 95);
   --paper-2:    oklch(0.965 0.006 95);
   --surface:    oklch(0.995 0.003 95);
+  --scrim:      color-mix(in oklch, var(--paper) 78%, transparent);
+  --scrim-2:    color-mix(in oklch, var(--paper-2) 78%, transparent);
   --ink:        oklch(0.235 0.028 256);
   --ink-700:    oklch(0.34 0.03 256);
   --ink-soft:   oklch(0.46 0.02 256);
@@ -134,9 +136,14 @@ em, .italic { font-style: italic; }
 /* ---------------- layout ---------------- */
 .wrap { width: min(1200px, 100% - 3rem); margin-inline: auto; }
 .wrap-narrow { width: min(760px, 100% - 3rem); margin-inline: auto; }
-.section { padding-block: clamp(4rem, 2.5rem + 6vw, 8rem); }
-.section-sm { padding-block: clamp(3rem, 2rem + 4vw, 5rem); }
+/* Content bands sit on a translucent scrim so the network reads faintly and
+   *uniformly* behind every section, instead of flipping between full-strength
+   (transparent bands) and hidden (opaque bands). Cards/metrics stay solid on
+   top; heroes and ink sections keep their own treatment. */
+.section { padding-block: clamp(4rem, 2.5rem + 6vw, 8rem); background: var(--scrim); }
+.section-sm { padding-block: clamp(3rem, 2rem + 4vw, 5rem); background: var(--scrim); }
 .divider { border-top: 1px solid var(--line); }
+.section.tone-2, .section-sm.tone-2 { background: var(--scrim-2); }
 .center { text-align: center; }
 .muted { color: var(--ink-soft); }
 
