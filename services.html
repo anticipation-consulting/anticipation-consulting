@@ -29,7 +29,7 @@ changefreq: monthly
 </section>
 
 <!-- Index tiles -->
-<section class="section-sm divider" style="background:var(--paper-2)">
+<section class="section-sm divider tone-2">
   <div class="wrap">
     <div class="grid-services" style="border:1px solid var(--line)">
       {%- for s in site.data.services %}
@@ -41,7 +41,7 @@ changefreq: monthly
 
 <!-- Anchored detail sections (data-driven from _data/services.yml) -->
 {%- for s in site.data.services %}
-<section class="section{% if s.variant == 'paper-2' %} divider{% elsif s.variant == 'ink' %} ink-section{% endif %}"{% if s.variant == 'paper-2' %} style="background:var(--paper-2)"{% endif %} id="{{ s.slug }}" data-screen-label="svc-{{ s.slug }}">
+<section class="section{% if s.variant == 'paper-2' %} divider tone-2{% elsif s.variant == 'ink' %} ink-section{% endif %}" id="{{ s.slug }}" data-screen-label="svc-{{ s.slug }}">
   {%- if s.variant == 'ink' %}<canvas class="hero-motif" data-seed="41" data-density="0.7" style="opacity:0.3"></canvas>{% endif %}
   <div class="wrap"{% if s.variant == 'ink' %} style="position:relative;z-index:1"{% endif %}>
     <div style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start" class="pos-grid">
