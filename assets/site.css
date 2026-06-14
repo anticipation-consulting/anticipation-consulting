@@ -355,6 +355,8 @@ em, .italic { font-style: italic; }
 .ink-section .step .step-no { color: var(--accent); }
 .step h3 { margin-top: 0.7rem; font-size: 1.2rem; }
 .step p { margin-top: 0.6rem; color: var(--ink-soft); font-size: 0.94rem; }
+.step p strong { color: var(--ink); font-weight: 600; }
+.ink-section .step p strong { color: var(--on-ink); }
 .ink-section .step p { color: var(--on-ink-soft); }
 
 /* ---------------- founder / bio ---------------- */
