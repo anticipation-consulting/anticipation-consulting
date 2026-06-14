@@ -141,9 +141,14 @@ The site is built to leak nothing to third parties:
   no network requests. Social links in the footer are click-only (`rel="noopener"`).
 - **Response headers** (`netlify.toml`): a strict `Content-Security-Policy`
   (`default-src 'self'`; `'unsafe-inline'` kept only for `style-src`, because the
-  markup uses inline `style=""`), plus `Referrer-Policy`, `Permissions-Policy`
-  (geolocation/camera/mic disabled; Topics/FLoC opted out), `X-Content-Type-Options`,
-  `X-Frame-Options`, and HSTS.
+  markup uses inline `style=""`), plus `Referrer-Policy`, a deny-all
+  `Permissions-Policy` (geolocation/camera/mic/USB/… all off; Topics/FLoC opted
+  out), `Cross-Origin-Opener-Policy`, `X-Content-Type-Options`, `X-Frame-Options`,
+  `X-DNS-Prefetch-Control: off`, and **HSTS** (2y, `includeSubDomains; preload`)
+  with CSP `upgrade-insecure-requests` — HTTPS is enforced. (To finish HSTS
+  preload, submit the domain at hstspreload.org.)
+- **Responsible disclosure.** `/.well-known/security.txt` (RFC 9116, generated
+  from `security.txt`; its `Expires` auto-refreshes each build).
 - **Privacy scan** (`scripts/privacy-scan.sh`) fails the build if any third-party
   subresource (CDN/font/script/iframe/preconnect/`@import`) shows up in `_site/`.
   It runs in CI on every push/PR. Navigational `<a>` links are exempt.
