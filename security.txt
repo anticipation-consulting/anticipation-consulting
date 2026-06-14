@@ -4,6 +4,8 @@ sitemap: false
 ---
 # Security contact for Anticipation Consulting (RFC 9116).
 Contact: mailto:contact@anticipationconsulting.com
+Encryption: {{ site.url }}/assets/anticipation-consulting-pgp.asc
+Policy: {{ site.url }}/privacy/#disclosure
 Expires: {{ site.time | date: '%Y' | plus: 1 }}-{{ site.time | date: '%m' }}-01T00:00:00.000Z
 Preferred-Languages: en
 Canonical: {{ site.url }}/.well-known/security.txt

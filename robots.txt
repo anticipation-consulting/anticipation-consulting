@@ -4,9 +4,31 @@ permalink: /robots.txt
 sitemap: false
 ---
 # robots.txt — Anticipation Consulting
-# Responsible defaults: the whole public site is crawlable.
+# Search engines are welcome to the whole public site.
+# AI training / bulk-scraping crawlers are asked not to ingest it.
 
 User-agent: *
 Allow: /
+
+# Opt out of AI-training and mass-scraping crawlers (data-rights posture).
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+User-agent: FacebookBot
+User-agent: Amazonbot
+User-agent: Bytespider
+User-agent: PerplexityBot
+User-agent: CCBot
+User-agent: cohere-ai
+User-agent: Diffbot
+User-agent: Omgilibot
+User-agent: ImagesiftBot
+Disallow: /
 
 Sitemap: {{ "/sitemap.xml" | absolute_url }}

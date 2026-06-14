@@ -159,6 +159,21 @@ The site is built to leak nothing to third parties:
 When adding anything that could fetch from another origin (an embed, a script, a
 font), **self-host it** — otherwise the privacy scan fails. That is by design.
 
+Visitor-facing: a concise, honest **privacy policy** at `/privacy/` (privacy.html,
+linked in the footer) with a `#disclosure` section; `robots.txt` allows search
+engines but opts out of AI-training/scraper crawlers; `SECURITY.md` is the repo
+disclosure policy (GitHub Security tab).
+
+**Configured outside the repo** (registrar / DNS / host — not part of the build):
+
+- **Email auth:** SPF, DKIM, DMARC (`p=reject`); consider MTA-STS + TLS-RPT.
+  (Proton Mail supplies the SPF/DKIM records.)
+- **DNS hardening:** a CAA record restricting certificate issuance, plus DNSSEC.
+- **HTTPS:** keep Netlify "Force HTTPS" on (default), and submit the domain to
+  hstspreload.org so the HSTS `preload` directive takes effect.
+- **Verify:** target A+ on securityheaders.com, Mozilla Observatory, and SSL Labs.
+- **Repo:** branch protection on `main` with required CI, and signed/verified commits.
+
 ## Brand identity
 
 Full guidelines and the reproducible kit live in **`brand/`** (see
