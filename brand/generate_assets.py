@@ -14,9 +14,18 @@ import os, math, random
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
 FONTS = os.path.join(HERE, "fonts")
-DIST = os.path.join(HERE, "dist")
-os.makedirs(DIST, exist_ok=True)
+# Output roots. The downloadable kit lands in brand/dist/; the site-consumed OG
+# image and favicon are written straight into the site, so this generator is
+# their single source of truth. All three are env-overridable so the CI sync
+# check (brand/check_assets.py) can render into a temp tree without touching the
+# committed artifacts.
+DIST   = os.environ.get("BRAND_DIST",   os.path.join(HERE, "dist"))
+IMAGES = os.environ.get("BRAND_IMAGES", os.path.join(ROOT, "images"))
+ASSETS = os.environ.get("BRAND_ASSETS", os.path.join(ROOT, "assets"))
+for _d in (DIST, IMAGES, ASSETS):
+    os.makedirs(_d, exist_ok=True)
 
 DIDOT = os.path.join(FONTS, "GFSDidot-Regular.ttf")
 CORM  = os.path.join(FONTS, "CormorantGaramond-VF.ttf")
@@ -216,8 +225,42 @@ def banner(w, h, name, tagline=True):
 
     return img.resize((w, h), Image.LANCZOS).convert("RGB")
 
+# ---- site Open Graph / social card  (→ images/og-image.png) -----------------
+def og_card(w=1200, h=630):
+    """The site's Open Graph image: wordmark + tagline centred on the ink network
+    field. Written to images/og-image.png (the path _config.yml serves); its size
+    must equal the og:image:width/height declared in _includes/head.html."""
+    W, H = w * SS, h * SS
+    img = network_rgba(w, h, seed=11, ground=INK)
+    d = ImageDraw.Draw(img)
+
+    wm = compose_wordmark(ON_INK, ON_INK_SOFT, cap=210)
+    scale = min(W * 0.72 / wm.width, H * 0.26 / wm.height)
+    wm = wm.resize((max(1, int(wm.width * scale)),
+                    max(1, int(wm.height * scale))), Image.LANCZOS)
+
+    f = mono_font(int(H * 0.034))
+    tg = "WHAT  YOU  DIDN'T  KNOW  TO  ASK"
+    tg_w = sum(f.getlength(c) + 0.18 * f.size for c in tg) - 0.18 * f.size
+    gap = int(H * 0.075)
+    block_h = wm.height + gap + int(f.size)
+    top = (H - block_h) // 2
+
+    img.alpha_composite(wm, ((W - wm.width) // 2, top))
+    ry = top + wm.height + gap // 2
+    rw = int(W * 0.05)
+    d.line([((W - rw) // 2, ry), ((W + rw) // 2, ry)], fill=BLUE + (255,),
+           width=max(1, SS))
+    ty = top + wm.height + gap + f.size
+    tracked(d, ((W - tg_w) // 2, ty), tg, f, ON_INK_SOFT + (255,), 0.18 * f.size)
+
+    return img.resize((w, h), Image.LANCZOS).convert("RGB")
+
 # ---- mark-A.svg (vector, glyph outline) -------------------------------------
-def write_mark_svg():
+def _mark_svg(fill="#2f6fe0", ground=None, scale_frac=0.62, V=1000):
+    """The Didot 'A', rotated to match the logo, as a self-contained SVG. The
+    glyph is converted to a path so it renders anywhere without the font;
+    `ground` adds an opaque backing rect (None -> transparent)."""
     from fontTools.ttLib import TTFont
     from fontTools.pens.svgPathPen import SVGPathPen
     from fontTools.pens.boundsPen import BoundsPen
@@ -228,27 +271,27 @@ def write_mark_svg():
     bp = BoundsPen(gs); gs[gname].draw(bp)
     x0, y0, x1, y1 = bp.bounds
     cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-    V = 1000
-    s = (V * 0.62) / (y1 - y0)
+    s = (V * scale_frac) / (y1 - y0)
     # translate to centre · rotate · flip-y · recentre glyph
     tform = (f"translate({V/2:.2f},{V/2:.2f}) rotate(-{ROT}) "
              f"scale({s:.5f},{-s:.5f}) translate({-cx:.2f},{-cy:.2f})")
-    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{V}" height="{V}" '
-           f'viewBox="0 0 {V} {V}" role="img" aria-label="Anticipation Consulting">\n'
-           f'  <g transform="{tform}" fill="#2f6fe0"><path d="{dd}"/></g>\n</svg>\n')
-    open(os.path.join(DIST, "mark-A.svg"), "w").write(svg)
-    # tinted-ground variants
-    for fn, ground, fill in [("mark-A-on-ink.svg", "#1a1d22", "#2f6fe0"),
-                             ("mark-A-on-blue.svg", "#2f6fe0", "#f7f6f2")]:
-        s2 = svg.replace('fill="#2f6fe0"><path', f'fill="{fill}"><path').replace(
-            f'viewBox="0 0 {V} {V}">',
-            f'viewBox="0 0 {V} {V}"><rect width="{V}" height="{V}" fill="{ground}"/>')
-        # ensure rect sits behind: insert after opening tag instead
-        s2 = svg.replace('aria-label="Anticipation Consulting">\n',
-                         f'aria-label="Anticipation Consulting">\n  '
-                         f'<rect width="{V}" height="{V}" fill="{ground}"/>\n')
-        s2 = s2.replace('fill="#2f6fe0"><path', f'fill="{fill}"><path')
-        open(os.path.join(DIST, fn), "w").write(s2)
+    rect = f'  <rect width="{V}" height="{V}" fill="{ground}"/>\n' if ground else ""
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{V}" height="{V}" '
+            f'viewBox="0 0 {V} {V}" role="img" aria-label="Anticipation Consulting">\n'
+            f'{rect}  <g transform="{tform}" fill="{fill}"><path d="{dd}"/></g>\n</svg>\n')
+
+def write_mark_svg():
+    open(os.path.join(DIST, "mark-A.svg"), "w").write(_mark_svg())
+    open(os.path.join(DIST, "mark-A-on-ink.svg"), "w").write(
+        _mark_svg(fill="#2f6fe0", ground="#1a1d22"))
+    open(os.path.join(DIST, "mark-A-on-blue.svg"), "w").write(
+        _mark_svg(fill="#f7f6f2", ground="#2f6fe0"))
+
+def write_favicon():
+    """The site favicon IS the brand mark — generated from the same outline so it
+    can't drift from the identity and needs no web font to render."""
+    open(os.path.join(ASSETS, "favicon.svg"), "w").write(
+        _mark_svg(fill="#2f6fe0", ground="#1a1d22", scale_frac=0.66))
 
 # ---- build ------------------------------------------------------------------
 def save(img, name):
@@ -283,6 +326,12 @@ def main():
     print("vector…")
     write_mark_svg()
     print("  • mark-A.svg (+ on-ink / on-blue)")
+
+    print("site assets…")          # written into the site — single source of truth
+    og_card().save(os.path.join(IMAGES, "og-image.png"))
+    print("  • images/og-image.png 1200x630")
+    write_favicon()
+    print("  • assets/favicon.svg")
 
     # preview montage
     print("preview…")
