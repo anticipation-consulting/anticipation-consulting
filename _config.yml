@@ -37,7 +37,6 @@ exclude:
   - CLAUDE.md
   - SECURITY.md
   - LICENSE
-  - netlify.toml
   - brand
   - scripts
   - assets/fonts/fetch_webfonts.sh

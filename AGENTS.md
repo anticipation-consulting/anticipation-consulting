@@ -86,8 +86,9 @@ external theme gem). Plain HTML + Liquid, one stylesheet, one script.
   meta description, canonical, robots, Open Graph + Twitter cards, and includes
   the matching `_includes/schema/<page.schema>.html` JSON-LD. Driven by each
   page's front matter (`seo_title`, `description`, `og_*`, `schema`, `keywords`).
-- **Build & deploy.** `JEKYLL_ENV=production bundle exec jekyll build` → `_site/`,
-  served via Netlify (`netlify.toml`). CI (`.github/workflows/ci.yml`) builds on
+- **Build & deploy.** `JEKYLL_ENV=production bundle exec jekyll build` → `_site/`.
+  Hosted on **GitHub Pages** (custom domain via `CNAME`, HTTPS enforced). CI
+  (`.github/workflows/ci.yml`) builds on
   every push and PR to catch regressions. A second CI job (`brand`) regenerates
   the brand/site images and fails if any committed artifact has drifted from
   `brand/generate_assets.py`. `AGENTS.md`, `CLAUDE.md`, `README.md`, and
@@ -139,14 +140,14 @@ The site is built to leak nothing to third parties:
   no analytics, tag managers, CDNs, external scripts/styles, or web fonts. The
   contact path is `mailto:` + PGP (no form processor), and `assets/site.js` makes
   no network requests. Social links in the footer are click-only (`rel="noopener"`).
-- **Response headers** (`netlify.toml`): a strict `Content-Security-Policy`
-  (`default-src 'self'`; `'unsafe-inline'` kept only for `style-src`, because the
-  markup uses inline `style=""`), plus `Referrer-Policy`, a deny-all
-  `Permissions-Policy` (geolocation/camera/mic/USB/… all off; Topics/FLoC opted
-  out), `Cross-Origin-Opener-Policy`, `X-Content-Type-Options`, `X-Frame-Options`,
-  `X-DNS-Prefetch-Control: off`, and **HSTS** (2y, `includeSubDomains; preload`)
-  with CSP `upgrade-insecure-requests` — HTTPS is enforced. (To finish HSTS
-  preload, submit the domain at hstspreload.org.)
+- **Security policy via `<meta>`.** GitHub Pages can't set HTTP response headers,
+  so `head.html` ships a strict `Content-Security-Policy` (`default-src 'self'`;
+  `'unsafe-inline'` only for `style-src`, because of inline `style=""`) and
+  `Referrer-Policy` as meta tags, with `upgrade-insecure-requests`. **HSTS** is
+  supplied by GitHub Pages when "Enforce HTTPS" is on. Header-only controls
+  (`Permissions-Policy`, `frame-ancestors`/`X-Frame-Options`,
+  `Cross-Origin-Opener-Policy`, `X-Content-Type-Options`) can't be served by
+  Pages — they need a proxy/CDN in front (see the infra notes).
 - **Responsible disclosure.** `/.well-known/security.txt` (RFC 9116, generated
   from `security.txt`; its `Expires` auto-refreshes each build).
 - **Privacy scan** (`scripts/privacy-scan.sh`) fails the build if any third-party
@@ -169,8 +170,12 @@ disclosure policy (GitHub Security tab).
 - **Email auth:** SPF, DKIM, DMARC (`p=reject`); consider MTA-STS + TLS-RPT.
   (Proton Mail supplies the SPF/DKIM records.)
 - **DNS hardening:** a CAA record restricting certificate issuance, plus DNSSEC.
-- **HTTPS:** keep Netlify "Force HTTPS" on (default), and submit the domain to
-  hstspreload.org so the HSTS `preload` directive takes effect.
+- **HTTPS:** GitHub Pages → Settings → Pages → **Enforce HTTPS** (provides HTTPS
+  and HSTS for the custom domain).
+- **Full headers (optional):** to serve the header-only controls Pages can't
+  (Permissions-Policy, X-Frame-Options, COOP, nosniff, a `preload` HSTS), front
+  Pages with a proxy/CDN such as Cloudflare and set them there; then submit to
+  hstspreload.org.
 - **Verify:** target A+ on securityheaders.com, Mozilla Observatory, and SSL Labs.
 - **Repo:** branch protection on `main` with required CI, and signed/verified commits.
 

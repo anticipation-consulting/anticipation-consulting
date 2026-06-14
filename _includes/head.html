@@ -2,6 +2,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+{%- comment -%} GitHub Pages serves static files and can't set HTTP response
+headers, so the security policy ships as a meta CSP. frame-ancestors,
+Permissions-Policy, COOP and HSTS are header-only (can't live in a meta tag);
+HSTS is provided by GitHub Pages when "Enforce HTTPS" is on — see AGENTS.md. {%- endcomment -%}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; img-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
 {%- assign seo_title = page.seo_title | default: page.title -%}
 {%- if seo_title == nil or seo_title == "" %}{% assign seo_title = site.title %}{% endif -%}
 {%- assign desc = page.description | default: site.description -%}

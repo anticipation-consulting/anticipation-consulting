@@ -20,7 +20,7 @@ disclosure. We'll acknowledge good-faith reports promptly.
 This is a static marketing site — no user accounts, database, or server-side
 application code. The most security-relevant surfaces are:
 
-- the response headers / Content-Security-Policy (`netlify.toml`),
+- the Content-Security-Policy meta tag (`_includes/head.html`),
 - the build and release automation (`.github/workflows/`),
 - the absence of third-party resources, enforced by `scripts/privacy-scan.sh`,
 - the brand/image pipeline integrity check (`brand/check_assets.py`).

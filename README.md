@@ -80,9 +80,10 @@ bundle exec jekyll build  # build the production site into _site/
 
 ## Deployment
 
-The production site is built with `jekyll build` (`JEKYLL_ENV=production`) and
-served from the `_site/` directory (see `netlify.toml`). `.github/workflows/ci.yml`
-builds the site on every push and pull request to catch regressions.
+The site is hosted on **GitHub Pages** at the custom domain in `CNAME`
+(`www.anticipationconsulting.com`), served over HTTPS. `.github/workflows/ci.yml`
+builds and checks the site (build, brand sync, privacy scan) on every push and
+pull request.
 
 ## License
 
