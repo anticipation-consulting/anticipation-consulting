@@ -88,8 +88,10 @@ external theme gem). Plain HTML + Liquid, one stylesheet, one script.
   page's front matter (`seo_title`, `description`, `og_*`, `schema`, `keywords`).
 - **Build & deploy.** `JEKYLL_ENV=production bundle exec jekyll build` → `_site/`,
   served via Netlify (`netlify.toml`). CI (`.github/workflows/ci.yml`) builds on
-  every push and PR to catch regressions. `AGENTS.md`, `CLAUDE.md`, `README.md`,
-  and `LICENSE` are listed under `exclude` so they don't publish.
+  every push and PR to catch regressions. A second CI job (`brand`) regenerates
+  the brand/site images and fails if any committed artifact has drifted from
+  `brand/generate_assets.py`. `AGENTS.md`, `CLAUDE.md`, `README.md`, and
+  `LICENSE` are listed under `exclude` so they don't publish.
 
 ---
 
@@ -106,7 +108,9 @@ external theme gem). Plain HTML + Liquid, one stylesheet, one script.
   (eyebrows/labels) · Cormorant Garamond + GFS Didot (wordmark). Loaded from
   Google Fonts in `head.html`.
 - **Logo & favicon.** A tilted GFS Didot "A" (electric blue, −30°) set against
-  "nticipation Consulting", so the mark itself is the leading "A".
+  "nticipation Consulting", so the mark itself is the leading "A". The favicon
+  (`assets/favicon.svg`) and the social/OG image (`images/og-image.png`) are
+  **generated** by the brand pipeline, not hand-maintained — see *Brand identity*.
 - **Network background.** `site.js` injects one fixed, full-viewport
   `<canvas id="net-bg">`: a drifting node-link field — triangular nodes in the
   brand triad (blue/copper/green), gradient links that fade with distance, and
@@ -166,6 +170,7 @@ Always run a production build before committing — CI runs the same build.
 | Design tokens / palettes / components | `assets/site.css` |
 | Network background, nav, palette, reveals | `assets/site.js` |
 | Brand kit (marks, banners, palette) | `brand/generate_assets.py` → `brand/dist/` |
+| Site OG image & favicon | `brand/generate_assets.py` → `images/og-image.png`, `assets/favicon.svg` — CI-verified by `brand/check_assets.py` |
 
 **Conventions**
 
