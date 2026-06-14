@@ -199,6 +199,16 @@ em, .italic { font-style: italic; }
 .wm-sub  { font-family: "Cormorant Garamond", serif; font-weight: 300; letter-spacing: 0.04em; color: var(--ink-soft); margin-left: 0.5em; }
 .is-ink .brand .wm-text { color: var(--on-ink); }
 .is-ink .brand .wm-sub  { color: var(--on-ink-soft); }
+
+/* Recurring brand credo thread (_includes/credo.html) — data, methods, results,
+   conclusions: the four-link chain, repeated site-wide. */
+.credo { display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; margin: 0; list-style: none;
+  font-family: "IBM Plex Mono", monospace; font-size: 0.74rem; letter-spacing: 0.04em; color: var(--ink-soft); }
+.credo li { position: relative; white-space: nowrap; }
+.credo li + li::before { content: "·"; position: absolute; left: -0.85rem; color: var(--accent); }
+.hero .credo, .page-hero .credo { margin-top: 1.8rem; }
+.site-footer .credo { margin-top: 2.4rem; }
+.site-footer .credo li, .ink-section .credo li, .is-ink .credo li { color: var(--on-ink-soft); }
 .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
 .nav-links a {
   font-size: 0.95rem; color: var(--ink-700); position: relative; padding-block: 0.4rem;
