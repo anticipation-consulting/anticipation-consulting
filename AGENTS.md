@@ -86,8 +86,9 @@ external theme gem). Plain HTML + Liquid, one stylesheet, one script.
   meta description, canonical, robots, Open Graph + Twitter cards, and includes
   the matching `_includes/schema/<page.schema>.html` JSON-LD. Driven by each
   page's front matter (`seo_title`, `description`, `og_*`, `schema`, `keywords`).
-- **Build & deploy.** `JEKYLL_ENV=production bundle exec jekyll build` → `_site/`,
-  served via Netlify (`netlify.toml`). CI (`.github/workflows/ci.yml`) builds on
+- **Build & deploy.** `JEKYLL_ENV=production bundle exec jekyll build` → `_site/`.
+  Hosted on **GitHub Pages** (custom domain via `CNAME`, HTTPS enforced). CI
+  (`.github/workflows/ci.yml`) builds on
   every push and PR to catch regressions. A second CI job (`brand`) regenerates
   the brand/site images and fails if any committed artifact has drifted from
   `brand/generate_assets.py`. `AGENTS.md`, `CLAUDE.md`, `README.md`, and
@@ -105,8 +106,9 @@ external theme gem). Plain HTML + Liquid, one stylesheet, one script.
   (`--paper`, `--ink`, `--accent`, `--line`, …) so the whole site re-themes from
   those blocks — never hard-code a hex in a component.
 - **Typography.** Spectral (serif display) · IBM Plex Sans (body) · IBM Plex Mono
-  (eyebrows/labels) · Cormorant Garamond + GFS Didot (wordmark). Loaded from
-  Google Fonts in `head.html`.
+  (eyebrows/labels) · Cormorant Garamond + GFS Didot (wordmark). **Self-hosted**
+  (no third-party CDN) from `assets/fonts/` via `@font-face` in `site.css`;
+  refresh with `assets/fonts/fetch_webfonts.sh`.
 - **Logo & favicon.** A tilted GFS Didot "A" (electric blue, −30°) set against
   "nticipation Consulting", so the mark itself is the leading "A". The favicon
   (`assets/favicon.svg`) and the social/OG image (`images/og-image.png`) are
@@ -129,6 +131,53 @@ external theme gem). Plain HTML + Liquid, one stylesheet, one script.
   full `prefers-reduced-motion` support, and color tokens chosen for contrast.
 
 ---
+
+## Security & privacy
+
+The site is built to leak nothing to third parties:
+
+- **No third-party requests.** Fonts are self-hosted (`assets/fonts/`); there are
+  no analytics, tag managers, CDNs, external scripts/styles, or web fonts. The
+  contact path is `mailto:` + PGP (no form processor), and `assets/site.js` makes
+  no network requests. Social links in the footer are click-only (`rel="noopener"`).
+- **Security policy via `<meta>`.** GitHub Pages can't set HTTP response headers,
+  so `head.html` ships a strict `Content-Security-Policy` (`default-src 'self'`;
+  `'unsafe-inline'` only for `style-src`, because of inline `style=""`) and
+  `Referrer-Policy` as meta tags, with `upgrade-insecure-requests`. **HSTS** is
+  supplied by GitHub Pages when "Enforce HTTPS" is on. Header-only controls
+  (`Permissions-Policy`, `frame-ancestors`/`X-Frame-Options`,
+  `Cross-Origin-Opener-Policy`, `X-Content-Type-Options`) can't be served by
+  Pages — they need a proxy/CDN in front (see the infra notes).
+- **Responsible disclosure.** `/.well-known/security.txt` (RFC 9116, generated
+  from `security.txt`; its `Expires` auto-refreshes each build).
+- **Privacy scan** (`scripts/privacy-scan.sh`) fails the build if any third-party
+  subresource (CDN/font/script/iframe/preconnect/`@import`) shows up in `_site/`.
+  It runs in CI on every push/PR. Navigational `<a>` links are exempt.
+- **Quarterly audit** (`.github/workflows/quarterly-audit.yml`) refreshes the
+  self-hosted fonts, regenerates the brand/site images, updates Ruby gems and
+  re-pins the Python image deps, re-runs every check, and opens a PR with changes.
+
+When adding anything that could fetch from another origin (an embed, a script, a
+font), **self-host it** — otherwise the privacy scan fails. That is by design.
+
+Visitor-facing: a concise, honest **privacy policy** at `/privacy/` (privacy.html,
+linked in the footer) with a `#disclosure` section; `robots.txt` allows search
+engines but opts out of AI-training/scraper crawlers; `SECURITY.md` is the repo
+disclosure policy (GitHub Security tab).
+
+**Configured outside the repo** (registrar / DNS / host — not part of the build):
+
+- **Email auth:** SPF, DKIM, DMARC (`p=reject`); consider MTA-STS + TLS-RPT.
+  (Proton Mail supplies the SPF/DKIM records.)
+- **DNS hardening:** a CAA record restricting certificate issuance, plus DNSSEC.
+- **HTTPS:** GitHub Pages → Settings → Pages → **Enforce HTTPS** (provides HTTPS
+  and HSTS for the custom domain).
+- **Full headers (optional):** to serve the header-only controls Pages can't
+  (Permissions-Policy, X-Frame-Options, COOP, nosniff, a `preload` HSTS), front
+  Pages with a proxy/CDN such as Cloudflare and set them there; then submit to
+  hstspreload.org.
+- **Verify:** target A+ on securityheaders.com, Mozilla Observatory, and SSL Labs.
+- **Repo:** branch protection on `main` with required CI, and signed/verified commits.
 
 ## Brand identity
 
@@ -169,6 +218,7 @@ Always run a production build before committing — CI runs the same build.
 | The nine services | `_data/services.yml` |
 | Design tokens / palettes / components | `assets/site.css` |
 | Network background, nav, palette, reveals | `assets/site.js` |
+| Self-hosted web fonts | `assets/fonts/` — refresh: `assets/fonts/fetch_webfonts.sh` |
 | Brand kit (marks, banners, palette) | `brand/generate_assets.py` → `brand/dist/` |
 | Site OG image & favicon | `brand/generate_assets.py` → `images/og-image.png`, `assets/favicon.svg` — CI-verified by `brand/check_assets.py` |
 

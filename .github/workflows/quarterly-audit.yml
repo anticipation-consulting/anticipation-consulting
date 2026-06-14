@@ -1,0 +1,90 @@
+name: Quarterly security audit
+
+# Keeps self-hosted content and pinned dependencies fresh, and re-runs the
+# privacy/security checks. Runs at 09:00 UTC on the 1st of Jan/Apr/Jul/Oct, or
+# on demand. Any update is proposed as a PR for human review — nothing is
+# pushed to main automatically.
+on:
+  schedule:
+    - cron: "0 9 1 1,4,7,10 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  audit:
+    name: Refresh self-hosted content & dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 1. Bump the image toolchain, and re-pin it in ci.yml so the brand
+      #    sync-check stays consistent with the assets we regenerate below.
+      - name: Update & re-pin image deps
+        run: |
+          python -m pip install --upgrade Pillow fonttools
+          PILLOW=$(python -c "import PIL; print(PIL.__version__)")
+          FT=$(python -c "import fontTools; print(fontTools.version)")
+          sed -i -E "s/Pillow==[0-9][0-9.]*/Pillow==$PILLOW/; s/fonttools==[0-9][0-9.]*/fonttools==$FT/" .github/workflows/ci.yml
+          echo "Pinned Pillow==$PILLOW, fonttools==$FT"
+
+      # 2. Refresh self-hosted web fonts (latest OFL releases).
+      - name: Refresh self-hosted web fonts
+        run: bash assets/fonts/fetch_webfonts.sh
+
+      # 3. Refresh brand fonts and regenerate the brand + site images so any
+      #    font/library change propagates into the rendered artifacts.
+      - name: Regenerate brand & site images
+        run: |
+          bash brand/fetch_fonts.sh
+          python3 brand/generate_assets.py
+
+      # 4. Update Ruby gem dependencies (within Gemfile constraints).
+      - name: Update Ruby dependencies
+        run: bundle update
+
+      # 5. Everything must still build and pass the security checks before we
+      #    propose the changes.
+      - name: Build site
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
+      - name: Brand & site images in sync
+        run: python3 brand/check_assets.py
+      - name: Privacy scan
+        run: bash scripts/privacy-scan.sh _site
+
+      # 6. Open a PR if (and only if) anything changed.
+      - name: Propose updates as a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Self-hosted content and dependencies are already current — nothing to propose."
+            exit 0
+          fi
+          BRANCH="chore/quarterly-audit-$(date +%Y-%m-%d)"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add -A
+          git commit -m "Quarterly security audit: refresh self-hosted fonts, brand assets, and dependencies"
+          git push -u origin "$BRANCH"
+          BODY=$'Automated quarterly refresh:\n\n- Re-fetched self-hosted web fonts (assets/fonts/).\n- Regenerated brand/dist, images/og-image.png, and assets/favicon.svg.\n- Ran bundle update; bumped and re-pinned Pillow/fonttools in ci.yml.\n\nBuild, brand sync-check, and privacy scan passed in the audit job. Review the diff before merging.'
+          gh pr create --base main --head "$BRANCH" \
+            --title "Quarterly security audit — refreshed self-hosted content & dependencies" \
+            --body "$BODY"

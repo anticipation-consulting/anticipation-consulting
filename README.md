@@ -14,8 +14,9 @@ using a bespoke, self-contained theme (no external theme dependency).
 ## Design system
 
 - **Type** — Spectral (serif display) · IBM Plex Sans (body) · IBM Plex Mono
-  (labels/eyebrows) · Cormorant Garamond + GFS Didot (wordmark). Loaded from
-  Google Fonts.
+  (labels/eyebrows) · Cormorant Garamond + GFS Didot (wordmark). **Self-hosted**
+  in `assets/fonts/` (no third-party CDN); see *Security & privacy* in
+  [AGENTS.md](AGENTS.md).
 - **Palettes** — three palettes are defined as `html[data-palette="signal|ink|field"]`
   blocks of CSS custom properties in `assets/site.css`. **Signal** (charcoal +
   electric blue) is the default.
@@ -79,9 +80,10 @@ bundle exec jekyll build  # build the production site into _site/
 
 ## Deployment
 
-The production site is built with `jekyll build` (`JEKYLL_ENV=production`) and
-served from the `_site/` directory (see `netlify.toml`). `.github/workflows/ci.yml`
-builds the site on every push and pull request to catch regressions.
+The site is hosted on **GitHub Pages** at the custom domain in `CNAME`
+(`www.anticipationconsulting.com`), served over HTTPS. `.github/workflows/ci.yml`
+builds and checks the site (build, brand sync, privacy scan) on every push and
+pull request.
 
 ## License
 
