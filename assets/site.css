@@ -349,8 +349,8 @@ em, .italic { font-style: italic; }
 
 /* ---------------- approach / steps ---------------- */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.2rem; }
-.step { border-top: 2px solid var(--ink); padding-top: 1.2rem; }
-.ink-section .step { border-top-color: var(--accent); }
+.step { background: var(--paper); border-top: 2px solid var(--ink); padding: 1.3rem 1.6rem 1.6rem; }
+.ink-section .step { background: transparent; border-top-color: var(--accent); }
 .step .step-no { font-family: "IBM Plex Mono", monospace; font-size: 0.74rem; letter-spacing: 0.14em; color: var(--accent-ink); }
 .ink-section .step .step-no { color: var(--accent); }
 .step h3 { margin-top: 0.7rem; font-size: 1.2rem; }
