@@ -41,6 +41,9 @@ jobs:
           test -f _site/sitemap.xml
           test -f _site/robots.txt
 
+      - name: Privacy scan — no third-party resources load
+        run: bash scripts/privacy-scan.sh _site
+
   brand:
     name: Brand & site images in sync
     runs-on: ubuntu-latest

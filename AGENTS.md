@@ -105,8 +105,9 @@ external theme gem). Plain HTML + Liquid, one stylesheet, one script.
   (`--paper`, `--ink`, `--accent`, `--line`, …) so the whole site re-themes from
   those blocks — never hard-code a hex in a component.
 - **Typography.** Spectral (serif display) · IBM Plex Sans (body) · IBM Plex Mono
-  (eyebrows/labels) · Cormorant Garamond + GFS Didot (wordmark). Loaded from
-  Google Fonts in `head.html`.
+  (eyebrows/labels) · Cormorant Garamond + GFS Didot (wordmark). **Self-hosted**
+  (no third-party CDN) from `assets/fonts/` via `@font-face` in `site.css`;
+  refresh with `assets/fonts/fetch_webfonts.sh`.
 - **Logo & favicon.** A tilted GFS Didot "A" (electric blue, −30°) set against
   "nticipation Consulting", so the mark itself is the leading "A". The favicon
   (`assets/favicon.svg`) and the social/OG image (`images/og-image.png`) are
@@ -129,6 +130,29 @@ external theme gem). Plain HTML + Liquid, one stylesheet, one script.
   full `prefers-reduced-motion` support, and color tokens chosen for contrast.
 
 ---
+
+## Security & privacy
+
+The site is built to leak nothing to third parties:
+
+- **No third-party requests.** Fonts are self-hosted (`assets/fonts/`); there are
+  no analytics, tag managers, CDNs, external scripts/styles, or web fonts. The
+  contact path is `mailto:` + PGP (no form processor), and `assets/site.js` makes
+  no network requests. Social links in the footer are click-only (`rel="noopener"`).
+- **Response headers** (`netlify.toml`): a strict `Content-Security-Policy`
+  (`default-src 'self'`; `'unsafe-inline'` kept only for `style-src`, because the
+  markup uses inline `style=""`), plus `Referrer-Policy`, `Permissions-Policy`
+  (geolocation/camera/mic disabled; Topics/FLoC opted out), `X-Content-Type-Options`,
+  `X-Frame-Options`, and HSTS.
+- **Privacy scan** (`scripts/privacy-scan.sh`) fails the build if any third-party
+  subresource (CDN/font/script/iframe/preconnect/`@import`) shows up in `_site/`.
+  It runs in CI on every push/PR. Navigational `<a>` links are exempt.
+- **Quarterly audit** (`.github/workflows/quarterly-audit.yml`) refreshes the
+  self-hosted fonts, regenerates the brand/site images, updates Ruby gems and
+  re-pins the Python image deps, re-runs every check, and opens a PR with changes.
+
+When adding anything that could fetch from another origin (an embed, a script, a
+font), **self-host it** — otherwise the privacy scan fails. That is by design.
 
 ## Brand identity
 
@@ -169,6 +193,7 @@ Always run a production build before committing — CI runs the same build.
 | The nine services | `_data/services.yml` |
 | Design tokens / palettes / components | `assets/site.css` |
 | Network background, nav, palette, reveals | `assets/site.js` |
+| Self-hosted web fonts | `assets/fonts/` — refresh: `assets/fonts/fetch_webfonts.sh` |
 | Brand kit (marks, banners, palette) | `brand/generate_assets.py` → `brand/dist/` |
 | Site OG image & favicon | `brand/generate_assets.py` → `images/og-image.png`, `assets/favicon.svg` — CI-verified by `brand/check_assets.py` |
 
