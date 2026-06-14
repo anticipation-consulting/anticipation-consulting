@@ -9,10 +9,10 @@ title: "Anticipation Consulting"
 tagline: "What you didn't know to ask."
 mission: "We find questions you didn't know to ask and deliver evidence designed to be challenged."
 description: >-
-  We find questions you didn't know to ask and deliver evidence designed to be
-  challenged. Anticipation Consulting is a boutique data science and AI
-  consultancy led by Brian C. Keegan, Ph.D. — rigorous modeling, independent
-  audits, strategic advisory, and expert testimony.
+  Data science designed for scrutiny: audited data, reproducible methods,
+  interpretable results, and accessible conclusions. Anticipation Consulting is
+  a boutique data science and AI consultancy led by Brian C. Keegan, Ph.D. —
+  modeling, independent audits, advisory, and expert testimony.
 author: "Brian C. Keegan"
 email: "contact@anticipationconsulting.com"
 locale: "en_US"
@@ -22,7 +22,7 @@ permalink: pretty
 
 # Shared SEO defaults (overridable per page via front matter)
 og_image: "/images/og-image.png"
-og_image_alt: "Anticipation Consulting — rigorous data science for decisions that can't be redone."
+og_image_alt: "Anticipation Consulting — data science designed for scrutiny."
 
 plugins:
   - jekyll-environment-variables
