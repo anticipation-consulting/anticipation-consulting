@@ -1,15 +1,7 @@
 <header class="site-header" data-screen-label="header">
   <div class="wrap nav">
     <a class="brand" href="/" aria-label="Anticipation Consulting — home">
-      <svg width="22" height="27" viewBox="0 0 22 27" aria-hidden="true" style="overflow:visible">
-        <g transform="translate(11,14) rotate(-30)">
-          <text x="0" y="0" text-anchor="middle" dominant-baseline="middle"
-            fill="#2f6fe0"
-            font-family="'GFS Didot','Didot','Bodoni MT',Georgia,serif"
-            font-size="24">A</text>
-        </g>
-      </svg>
-      <span class="mark"><span class="mark-sans">nticipation</span><span class="mark-serif"> Consulting</span></span>
+      {%- include wordmark.html -%}
     </a>
     <ul class="nav-links">
       <li><a href="/services/"{% if page.nav == 'services' %} class="active"{% endif %}>Services</a></li>

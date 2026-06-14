@@ -189,20 +189,16 @@ em, .italic { font-style: italic; }
   gap: 1.5rem; height: 74px;
 }
 .brand { display: flex; align-items: center; gap: 0.55rem; letter-spacing: -0.01em; }
-.brand .mark {
-  font-size: 1.15rem; color: var(--ink); white-space: nowrap; display: flex; align-items: baseline; gap: 0;
-}
-.brand .mark-sans {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-}
-.brand .mark-serif {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300; font-style: normal; letter-spacing: 0.04em; color: var(--ink-soft);
-  margin-left: 0.5em;
-}
-.is-ink .brand .mark { color: var(--on-ink); }
-.brand .mark b { color: var(--accent); font-weight: 600; }
+/* Brand wordmark lockup — single source: _includes/wordmark.html. Blue Didot
+   "A" mark + NTICIPATION (Cormorant SemiBold, tracked caps) + Consulting
+   (Cormorant Light). Per brand/README.md — do not hand-set the wordmark. */
+.wordmark { display: inline-flex; align-items: center; gap: 0.42rem; white-space: nowrap; font-size: 1.15rem; letter-spacing: -0.01em; }
+.wm-mark { height: 1.5em; width: auto; display: block; flex: none; }
+.wm-text { display: inline-flex; align-items: baseline; line-height: 1; color: var(--ink); }
+.wm-name { font-family: "Cormorant Garamond", serif; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.wm-sub  { font-family: "Cormorant Garamond", serif; font-weight: 300; letter-spacing: 0.04em; color: var(--ink-soft); margin-left: 0.5em; }
+.is-ink .brand .wm-text { color: var(--on-ink); }
+.is-ink .brand .wm-sub  { color: var(--on-ink-soft); }
 .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
 .nav-links a {
   font-size: 0.95rem; color: var(--ink-700); position: relative; padding-block: 0.4rem;
@@ -408,8 +404,9 @@ em, .italic { font-style: italic; }
 /* ---------------- footer ---------------- */
 .site-footer { background: var(--ink); color: var(--on-ink); padding-block: clamp(3.5rem, 2.5rem + 4vw, 5.5rem) 2.5rem; }
 .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 2.5rem; }
-.footer-brand .mark { font-family: "Spectral", serif; font-size: 1.3rem; color: var(--on-ink); font-weight: 600; }
-.footer-brand .mark b { color: var(--accent); }
+.footer-brand .wordmark { display: flex; font-size: 1.35rem; }
+.footer-brand .wm-text { color: var(--on-ink); }
+.footer-brand .wm-sub { color: var(--on-ink-soft); }
 .footer-brand p { margin-top: 1rem; color: var(--on-ink-soft); font-size: 0.95rem; max-width: 26rem; }
 .footer-col h4 { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-ink-soft); font-weight: 500; margin-bottom: 1.1rem; }
 .footer-col ul { list-style: none; display: grid; gap: 0.7rem; }

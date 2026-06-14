@@ -156,6 +156,9 @@ The site is built to leak nothing to third parties:
 - **Quarterly audit** (`.github/workflows/quarterly-audit.yml`) refreshes the
   self-hosted fonts, regenerates the brand/site images, updates Ruby gems and
   re-pins the Python image deps, re-runs every check, and opens a PR with changes.
+- **CI supply chain.** Workflows use least-privilege `permissions` and pin every
+  GitHub Action to a commit SHA (with a `# version` comment); read-only CI jobs
+  set `persist-credentials: false`.
 
 When adding anything that could fetch from another origin (an embed, a script, a
 font), **self-host it** — otherwise the privacy scan fails. That is by design.
@@ -165,19 +168,20 @@ linked in the footer) with a `#disclosure` section; `robots.txt` allows search
 engines but opts out of AI-training/scraper crawlers; `SECURITY.md` is the repo
 disclosure policy (GitHub Security tab).
 
-**Configured outside the repo** (registrar / DNS / host — not part of the build):
+**Configured outside the repo** — host / DNS (Dreamhost) / email (Proton Mail).
+Confirmed status:
 
-- **Email auth:** SPF, DKIM, DMARC (`p=reject`); consider MTA-STS + TLS-RPT.
-  (Proton Mail supplies the SPF/DKIM records.)
-- **DNS hardening:** a CAA record restricting certificate issuance, plus DNSSEC.
-- **HTTPS:** GitHub Pages → Settings → Pages → **Enforce HTTPS** (provides HTTPS
-  and HSTS for the custom domain).
-- **Full headers (optional):** to serve the header-only controls Pages can't
-  (Permissions-Policy, X-Frame-Options, COOP, nosniff, a `preload` HSTS), front
-  Pages with a proxy/CDN such as Cloudflare and set them there; then submit to
-  hstspreload.org.
-- **Verify:** target A+ on securityheaders.com, Mozilla Observatory, and SSL Labs.
-- **Repo:** branch protection on `main` with required CI, and signed/verified commits.
+- ✓ **HTTPS** — GitHub Pages *Enforce HTTPS* is on (provides HTTPS + HSTS).
+- ✓ **DNS (Dreamhost)** — `www` CNAME, a **CAA** record, and **DNSSEC** enabled.
+- ✓ **Email auth (Proton Mail)** — SPF, DKIM, and DMARC enabled.
+- ☐ **Quarterly PR** — enable Settings → Actions → General → "Allow GitHub Actions
+  to create and approve pull requests" (the quarterly-audit workflow needs it).
+- ☐ **Repo hardening** — branch protection on `main` (required CI), signed
+  commits, Dependabot.
+- ☐ **Optional** — front Pages with a proxy/CDN (e.g. Cloudflare) to add the
+  header-only controls Pages can't (Permissions-Policy, X-Frame-Options, COOP,
+  `nosniff`, a `preload` HSTS), then submit to hstspreload.org; MTA-STS + TLS-RPT
+  for email. Verify with securityheaders.com / Mozilla Observatory / SSL Labs.
 
 ## Brand identity
 

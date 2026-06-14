@@ -19,16 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@89f90524b88a01fe6e0b732220432cc6142926af # v1.313.0
         with:
           ruby-version: "3.3"
           bundler-cache: true
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.11"
 
@@ -68,7 +68,9 @@ jobs:
       - name: Privacy scan
         run: bash scripts/privacy-scan.sh _site
 
-      # 6. Open a PR if (and only if) anything changed.
+      # 6. Open a PR if (and only if) anything changed. Requires the repo setting
+      #    Settings > Actions > General > "Allow GitHub Actions to create and
+      #    approve pull requests".
       - name: Propose updates as a pull request
         env:
           GH_TOKEN: ${{ github.token }}
