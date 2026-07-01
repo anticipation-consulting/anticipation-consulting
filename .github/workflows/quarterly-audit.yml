@@ -68,12 +68,12 @@ jobs:
       - name: Privacy scan
         run: bash scripts/privacy-scan.sh _site
 
-      # 6. Open a PR if (and only if) anything changed. Requires the repo setting
-      #    Settings > Actions > General > "Allow GitHub Actions to create and
-      #    approve pull requests".
+      # 6. Open a PR if (and only if) anything changed. The default GITHUB_TOKEN
+      #    cannot open PRs (GitHub blocks Actions from creating/approving them),
+      #    so this step authenticates with the scoped AUTOMATION_TOKEN secret.
       - name: Propose updates as a pull request
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.AUTOMATION_TOKEN }}
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "Self-hosted content and dependencies are already current — nothing to propose."
