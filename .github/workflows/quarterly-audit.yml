@@ -73,7 +73,7 @@ jobs:
       #    approve pull requests".
       - name: Propose updates as a pull request
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.AUTOMATION_TOKEN }}
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "Self-hosted content and dependencies are already current — nothing to propose."
